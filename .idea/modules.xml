@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/202010774-202012230-202009279-PracticaFinal.iml" filepath="$PROJECT_DIR$/.idea/202010774-202012230-202009279-PracticaFinal.iml" />
-      <module fileurl="file://$PROJECT_DIR$/stockify-api/stockify-api.iml" filepath="$PROJECT_DIR$/stockify-api/stockify-api.iml" />
-    </modules>
-  </component>
-</project>

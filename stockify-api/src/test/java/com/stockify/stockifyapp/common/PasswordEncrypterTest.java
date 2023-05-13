@@ -9,7 +9,7 @@ public class PasswordEncrypterTest{
     private String pwd;
     private PasswordEncrypter pe;
     private String enPwd;
-    
+
 
     @Test
     public void testEncrypt() throws Exception {

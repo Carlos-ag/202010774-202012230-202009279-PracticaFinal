@@ -1,5 +1,6 @@
 package com.stockify.stockifyapp.controller;
 
+import com.stockify.stockifyapp.common.PasswordEncrypter;
 import com.stockify.stockifyapp.model.User;
 import com.stockify.stockifyapp.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,11 +31,12 @@ public class UserControllerTest {
     private UserService userService;
 
     private User user;
-
+    private PasswordEncrypter pwe;
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws Exception{
         user = new User("John Doe", "1234567890", "john.doe@example.com","password", null);
         user.setId(1);
+        pwe = new PasswordEncrypter();
     }
 
     @Test
@@ -46,7 +48,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("id").value(1))
                 .andExpect(jsonPath("name").value("John Doe"))
                 .andExpect(jsonPath("phone").value("1234567890"))
-                .andExpect(jsonPath("password").value("password"))
+                .andExpect(jsonPath("password").value(pwe.encrypt("password")))
                 .andExpect(jsonPath("email").value("john.doe@example.com"));
     }
 
@@ -63,7 +65,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("name").value("John Doe"))
                 .andExpect(jsonPath("phone").value("1234567890"))
                 .andExpect(jsonPath("email").value("john.doe@example.com"))
-                .andExpect(jsonPath("password").value("password"));
+                .andExpect(jsonPath("password").value(pwe.encrypt("password")));
     }
 
     /*

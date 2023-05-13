@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+import com.stockify.stockifyapp.common.PasswordEncrypter;
 
 @Table("USERS")
 public class User {
@@ -28,7 +29,7 @@ public class User {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.password = password;
+        setPassword(password);
         this.subscriptionPlan = subscriptionPlan;
     }
 
@@ -36,8 +37,14 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password){
+        try {
+            PasswordEncrypter pwe = new PasswordEncrypter();
+            this.password = pwe.encrypt(password);
+        }catch (Exception e)
+        {
+            this.password = password;
+        }
     }
 
     public Integer getId() {

@@ -33,7 +33,7 @@ public class UserControllerTest {
 
     @BeforeEach
     public void setUp() {
-        user = new User("John Doe", "1234567890", "john.doe@example.com", null);
+        user = new User("John Doe", "1234567890", "john.doe@example.com","password", null);
         user.setId(1);
     }
 
@@ -46,10 +46,27 @@ public class UserControllerTest {
                 .andExpect(jsonPath("id").value(1))
                 .andExpect(jsonPath("name").value("John Doe"))
                 .andExpect(jsonPath("phone").value("1234567890"))
+                .andExpect(jsonPath("password").value("password"))
                 .andExpect(jsonPath("email").value("john.doe@example.com"));
     }
 
     @Test
+    public void addUser_shouldAddUser() throws Exception {
+        given(userService.addUser(any(User.class), any(Integer.class))).willReturn(user);
+
+        mockMvc.perform(post("/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\":\"John Doe\",\"phone\":\"1234567890\",\"email\":\"john.doe@example.com\",\"password\":\"password\"}")
+                        .param("subscriptionPlanId", "1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").value(1))
+                .andExpect(jsonPath("name").value("John Doe"))
+                .andExpect(jsonPath("phone").value("1234567890"))
+                .andExpect(jsonPath("email").value("john.doe@example.com"))
+                .andExpect(jsonPath("password").value("password"));
+    }
+
+    /*
     public void addUser_shouldAddUser() throws Exception {
         given(userService.addUser(any(User.class), any(Integer.class))).willReturn(user);
 
@@ -63,7 +80,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("phone").value("1234567890"))
                 .andExpect(jsonPath("email").value("john.doe@example.com"));
     }
-
+    */
     @Test
     public void addUser_shouldReturnBadRequest_whenInvalidData() throws Exception {
         given(userService.addUser(any(User.class), any(Integer.class))).willThrow(new IllegalArgumentException("Invalid data"));

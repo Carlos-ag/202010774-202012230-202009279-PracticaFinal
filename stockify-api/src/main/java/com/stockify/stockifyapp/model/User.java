@@ -15,6 +15,8 @@ public class User {
     private String phone;
     @Column("EMAIL")
     private String email;
+    @Column("PASSWORD")
+    private String password;
     @Column("SUBSCRIPTION_PLAN")
     private AggregateReference<SubscriptionPlan, Integer> subscriptionPlan;
 
@@ -22,11 +24,20 @@ public class User {
     public User() {
     }
 
-    public User(String name, String phone, String email, AggregateReference<SubscriptionPlan, Integer> subscriptionPlan) {
+    public User(String name, String phone, String email,String password, AggregateReference<SubscriptionPlan, Integer> subscriptionPlan) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.password = password;
         this.subscriptionPlan = subscriptionPlan;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getId() {

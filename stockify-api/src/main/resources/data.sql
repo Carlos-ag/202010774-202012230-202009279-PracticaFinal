@@ -5,10 +5,10 @@ INSERT INTO SUBSCRIPTION_PLANS (NAME, PRICE) VALUES
 ('Enterprise', 49.99);
 
 -- Insertar datos iniciales en la tabla USERS
-INSERT INTO USERS (NAME, EMAIL, PHONE, SUBSCRIPTION_PLAN) VALUES
-('Alice', 'alice@example.com', '555-1234', 1),
-('Bob', 'bob@example.com', '555-5678', 2),
-('Carol', 'carol@example.com', '555-9012', 3);
+INSERT INTO USERS (NAME, EMAIL, PHONE, PASSWORD, SUBSCRIPTION_PLAN) VALUES
+('Alice', 'alice@example.com', '555-1234','password', 1),
+('Bob', 'bob@example.com', '555-5678','password', 2),
+('Carol', 'carol@example.com', '555-9012','password', 3);
 
 -- Insertar datos iniciales en la tabla UNSIGNED_MESSAGES
 INSERT INTO UNSIGNED_MESSAGES (NAME, EMAIL, MESSAGE, TIMESTAMP) VALUES

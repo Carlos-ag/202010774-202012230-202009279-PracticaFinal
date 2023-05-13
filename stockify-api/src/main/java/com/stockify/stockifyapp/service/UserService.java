@@ -75,8 +75,13 @@ public class UserService {
             throw new IllegalArgumentException("Email is required");
         }
         if (user.getPhone() == null) {
-            throw new IllegalArgumentException("Password is required");
+            throw new IllegalArgumentException("Phone is required");
         }
+        if (user.getPassword() == null)
+        {
+            throw  new IllegalArgumentException("Password is required");
+        }
+
 
         // check that email is valid with regex
         String email = user.getEmail();

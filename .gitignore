@@ -4,6 +4,11 @@ stockify-api/target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### logs ###
+*.log
+*.gz
+
+
 ### STS ###
 .apt_generated
 .classpath

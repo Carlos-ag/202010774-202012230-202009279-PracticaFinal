@@ -41,8 +41,8 @@
                     <input type="password" class="form-control" name="password" id="password" placeholder="Introduce tu contraseña" required>
                 </div>
                 <center>
-                    <button type="button" class="btn btn-outline-primary">Regístrate</button>
-                    <button type="submit" class="btn btn-primary">Inicia sesión</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="redirectToRegister()">Regístrate</button>
+                    <button type="submit" class="btn btn-primary" onclick="">Inicia sesión</button>
                 </center>
         </div>
 
@@ -62,5 +62,11 @@
 
 
 </body>
+
+<script>
+    function redirectToRegister() {
+      window.location.href = "register.html";
+    }
+  </script>
 
 </html>

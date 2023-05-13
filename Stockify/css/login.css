@@ -1,5 +1,6 @@
 body {
-  background-color: #263C7E;
+  background: -webkit-gradient(linear, left top, left bottom, from(black), to(rgb(101, 175, 215)));
+  background: linear-gradient(to bottom, black, rgb(101, 175, 215));
   color: whitesmoke;
 }
 
@@ -8,7 +9,6 @@ img {
 }
 
 .container {
-  background-color: #263C7E;
   color: whitesmoke;
   width: 100vw;
   height: 100vh;

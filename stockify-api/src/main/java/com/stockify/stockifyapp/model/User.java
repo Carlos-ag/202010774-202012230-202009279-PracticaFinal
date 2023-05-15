@@ -83,9 +83,20 @@ public class User {
         return subscriptionPlan;
     }
 
+
     public void setSubscriptionPlan(AggregateReference<SubscriptionPlan, Integer> subscriptionPlan) {
         this.subscriptionPlan = subscriptionPlan;
     }
 
-    
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", subscriptionPlan=" + subscriptionPlan +
+                '}';
+    }
 }

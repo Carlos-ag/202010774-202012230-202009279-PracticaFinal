@@ -69,6 +69,7 @@ function sidebarListeners() {
   const summary = document.getElementById("summary");
   const portfolio = document.getElementById("portfolio");
   const dividends = document.getElementById("dividends");
+  const social = document.getElementById("social");
   const profile = document.getElementById("profile");
   const login = document.getElementById("login");
 
@@ -76,6 +77,7 @@ function sidebarListeners() {
   summary.addEventListener("click", function () { loadPage("summary"); });
   portfolio.addEventListener("click", function () { loadPage("portfolio"); });
   dividends.addEventListener("click", function () { loadPage("dividends"); });
+  social.addEventListener("click", function () { loadPage("social"); });
   profile.addEventListener("click", function () { loadPage("profile"); });
   login.addEventListener("click", function () {
     window.location.replace("../html/login.html");

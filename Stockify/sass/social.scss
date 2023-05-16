@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#search-bar {
+    margin-bottom: 20px;
+}
+
+#display-buttons {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+}
+
+.circle {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.card {
+    border-radius: 25px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: white;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+}

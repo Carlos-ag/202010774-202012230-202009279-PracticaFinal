@@ -1,9 +1,31 @@
-body {
-  font-family: Arial, sans-serif;
+#search-bar-social {
+  margin-bottom: 20px;
+}
+#search-bar-social #search {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 }
 
-#search-bar {
+#display-buttons {
   margin-bottom: 20px;
+}
+#display-buttons button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(241, 158, 58);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+#display-buttons button:hover {
+  background-color: rgb(99, 79, 54);
 }
 
 #display-buttons {
@@ -22,7 +44,7 @@ table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
+  background-color: rgb(241, 158, 58);
   color: white;
 }
 

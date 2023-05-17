@@ -1,5 +1,5 @@
 // When the login button is clicked
-document.querySelector('button[type="submit"]').addEventListener('click', function(event) {
+document.getElementById("login").addEventListener('click',async function(event){
     // Prevent the form from submitting normally
     event.preventDefault();
 
@@ -7,9 +7,10 @@ document.querySelector('button[type="submit"]').addEventListener('click', functi
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
+    console.log("Email: "+ email+ " Password: " + password);
     // Make an API request to authenticate the user
     // CAMBIAR CARLOS TODO:!!!!!
-    fetch('/api/authenticate', {
+    await fetch("http://localhost:8080/login", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -22,15 +23,22 @@ document.querySelector('button[type="submit"]').addEventListener('click', functi
     .then(response => {
         // If the response is successful
         if (response.ok) {
+        
+            response = response.json();
+            console.log(response);
             // Get the userID cookie from the response
-            const cookie = response.headers.get('set-cookie');
-            const userID = cookie.split(';')[0].split('=')[1];
+            console.log(response.name);
+            
+            saveUserIdInCookie(response.id);
+            const cookie = getCookie2('userID');
+            userID = getUserIdFromCookie2();
+            //const userID = cookie.split(';')[0].split('=')[1];
 
             // Set the userID cookie
             document.cookie = `userID=${userID}; path=/`;
 
             // Redirect to the home page
-            window.location.href = '/home';
+            window.location.href = '/html/';
         } else {
             // Display an error message on the screen
             const errorMessage = document.createElement('div');

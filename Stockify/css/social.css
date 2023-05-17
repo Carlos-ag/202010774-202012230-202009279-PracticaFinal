@@ -39,6 +39,9 @@
 #display-buttons button:hover {
   background-color: rgb(99, 79, 54);
 }
+#display-buttons button.active {
+  background-color: rgb(181, 112, 27);
+}
 
 table {
   width: 100%;

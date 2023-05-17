@@ -1,0 +1,19 @@
+#server-down object {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+  }
+
+  #server-down {
+    width: 80vh;
+    // I want the items to be separated, do not superpose them
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    // make it unscrollable
+    overflow: hidden;
+  }
+  
+  

@@ -1,0 +1,1 @@
+document.getElementById("mensajebienvenida").innerHTML = ("Bienvenido " + window.name + "!");

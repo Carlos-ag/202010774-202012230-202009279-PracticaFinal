@@ -49,7 +49,7 @@
                 </div>
                 <div class="button-container">
                     <button id="login-button" class="btn btn-primary" type="button" onclick="redirectToLogin()">Login</button>
-                    <input type="submit" value="Register" class="btn btn-primary">
+                    <input type="submit" value="Register" onclick=sendLoginRequest() class="btn btn-primary">
                 </div>
                 
             </form>
@@ -65,12 +65,8 @@
     </script>
 
     <script src="../javascript/register.js"></script>
+    <script src="../javascript/cookie.js"></script>
 </body>
 
-<script>
-    function redirectToLogin() {
-      window.location.href = "login.html";
-    }
-  </script>
 </html>
 

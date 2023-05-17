@@ -71,6 +71,11 @@ fetch('http://localhost:8080/subscriptionPlans')
         
         subscriptionplan = document.getElementById('subscription').value;
       
+
+        if (!name || !phone || !email || !password) {
+            new Error('Invalid data');
+        }
+
         console.log("PLAN: " + subscriptionplan);
 
         var raw = JSON.stringify({
@@ -108,7 +113,7 @@ fetch('http://localhost:8080/subscriptionPlans')
                 // Redirect to the home page
                 //window.location.href = '/html/';
             } else {
-                throw new Error('Response is not an object or is empty');
+                throw new Error('Email already exists');
             }
         })
         .catch(error => {
@@ -116,7 +121,7 @@ fetch('http://localhost:8080/subscriptionPlans')
             // Display an error message on the screen
             const errorMessage = document.createElement('div');
             errorMessage.classList.add('alert', 'alert-danger');
-            errorMessage.textContent = "Invalid email or password";
+            errorMessage.textContent = "Invalid data"
             document.querySelector('.container-form').appendChild(errorMessage);
         })
     };

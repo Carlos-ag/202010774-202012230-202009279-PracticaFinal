@@ -41,7 +41,7 @@ document.getElementById("login").addEventListener('click',async function(event){
     
             // Set the userID cookie
             document.cookie = `userID=${userID}; path=/`;
-    
+            window.name = response.name;
             // Redirect to the home page
             window.location.href = '/html/';
         } else {

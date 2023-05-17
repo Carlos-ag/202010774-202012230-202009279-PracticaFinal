@@ -35,8 +35,8 @@ function saveUserIdInCookie(userId) {
 // Función para obtener el userId de la cookie
 function getUserIdFromCookie2() {
     console.log("getUserIdFromCookie");
-    return 1;
-    // return getCookie("userId");
+    //return 1;
+    return getCookie2("userId");
 }
 
-export { setCookie, getCookie2, saveUserIdInCookie, getUserIdFromCookie2 };
+//export { setCookie, getCookie2, saveUserIdInCookie, getUserIdFromCookie2 };

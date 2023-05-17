@@ -11,8 +11,7 @@ function getCookie(name) {
 
 function getUserIdFromCookie() {
     console.log("getUserIdFromCookie");
-    return 1;
-    // return getCookie("userId");
+    return getCookie("userId");
 }
 
 var userID = getUserIdFromCookie();

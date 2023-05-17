@@ -20,27 +20,62 @@
   font-size: 16px;
 }
 
-#display-buttons {
+.radio-inputs {
+  font-family: "Roboto", sans-serif;
+  margin: 0 auto;
   margin-bottom: 20px;
   text-align: center;
-}
-#display-buttons button {
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  background-color: rgb(241, 158, 58);
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  margin-right: 10px;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
-}
-#display-buttons button:hover {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  border-radius: 0.5rem;
   background-color: rgb(99, 79, 54);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+  padding: 0.25rem;
+  width: 300px;
+  font-size: 14px;
 }
-#display-buttons button.active {
-  background-color: rgb(181, 112, 27);
+
+.radio-inputs .radio {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  text-align: center;
+}
+
+.radio-inputs .radio input {
+  display: none;
+}
+
+.radio-inputs .radio .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.5rem 0;
+  color: white;
+  font-weight: 400;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked + .name {
+  background-color: rgb(241, 158, 58);
+  font-weight: 600;
 }
 
 table {

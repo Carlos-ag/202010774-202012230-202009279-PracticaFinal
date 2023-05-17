@@ -1,5 +1,6 @@
 var data = []; // this will hold the data from API
 var view = "table"; // default view is "table
+document.getElementById('table-button').checked = true;
 
 document.getElementById('table-button').classList.add('active');
 
@@ -70,15 +71,13 @@ function searchFunction() {
 
 function toggleVariable(viewSelected) {
     view = viewSelected;
-    // Remove the active class from all buttons
-    document.getElementById('table-button').classList.remove('active');
-    document.getElementById('card-button').classList.remove('active');
 
-    // Add the active class to the selected button
     if(view === 'table') {
-        document.getElementById('table-button').classList.add('active');
+        document.getElementById('table-button').checked = true;
+        document.getElementById('card-button').checked = false;
     } else if(view === 'card') {
-        document.getElementById('card-button').classList.add('active');
+        document.getElementById('card-button').checked = true;
+        document.getElementById('table-button').checked = false;
     }
     displayViewSelected();
 }

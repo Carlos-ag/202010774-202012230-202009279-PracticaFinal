@@ -53,7 +53,7 @@ document.getElementById("login").addEventListener('click',async function(event){
         // Display an error message on the screen
         const errorMessage = document.createElement('div');
         errorMessage.classList.add('alert', 'alert-danger');
-        errorMessage.textContent = error.message;
+        errorMessage.textContent = "Invalid email or password";
         document.querySelector('.container-form').appendChild(errorMessage);
     })
 });

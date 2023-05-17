@@ -1,9 +1,35 @@
-body {
-    font-family: Arial, sans-serif;
+@use "constants";
+
+#search-bar-social {
+    margin-bottom: 20px;
+    
+    #search {
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
 }
 
-#search-bar {
+#display-buttons {
     margin-bottom: 20px;
+    
+    button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        background-color: constants.$accent-orange;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+        transition: background-color 0.3s;
+        
+        &:hover {
+            background-color: constants.$hover-orange;
+        }
+    }
 }
 
 #display-buttons {
@@ -23,7 +49,7 @@ table {
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
-        background-color: #4CAF50;
+        background-color: constants.$accent-orange;
         color: white;
     }
 }

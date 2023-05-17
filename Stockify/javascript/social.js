@@ -1,8 +1,7 @@
 var data = []; // this will hold the data from API
+var view = "table"; // default view is "table
 
-window.onload = function() {
-    fetchData();
-};
+
 
 function fetchData() {
     fetch('http://localhost:8080/socials')
@@ -52,12 +51,29 @@ function getColor(portfolio_movements) {
 }
 
 function searchFunction() {
-    let searchValue = document.getElementById('search').value.toLowerCase();
-    let searchData = data.filter(item =>
-        item.name.toLowerCase().includes(searchValue) ||
-        item.email.toLowerCase().includes(searchValue) ||
-        item.subscription_plan.toLowerCase().includes(searchValue) ||
-        String(item.portfolio_movements).includes(searchValue));
-    data = searchData;
-    displayTable(); // or displayCard(), depends on the current view
+    let searchValue = document.getElementById('search').value;
+    fetch(`http://localhost:8080/socials/search?name=${searchValue}`)
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+        data = json;
+        displayViewSelected();
+
+    });
 }
+
+function toggleVariable(viewSelected) {
+    view = viewSelected;
+    displayViewSelected();
+}
+
+
+function displayViewSelected() {
+    console.log(view);
+    if (view === 'table') 
+    {displayTable();}
+    else if (view === 'card')
+    {displayCard();}
+}
+
+fetchData();

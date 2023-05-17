@@ -4,15 +4,22 @@
     <link rel="stylesheet" href="../css/social.css">
 </head>
 <body>
-    <div id="display-buttons">
-        <button onclick="toggleVariable('table')">Table View</button>
-        <button onclick="toggleVariable('card')">Card View</button>
+    <div id ="social">
+        <div id="display-buttons">
+            <button id="table-button" onclick="toggleVariable('table')">Table View</button>
+            <button id="card-button" onclick="toggleVariable('card')">Card View</button>        
+        </div>
+        <div id="search-bar-social">
+            <input type="text" id="search" placeholder="Search" onkeyup="searchFunction()">
+        </div>
+        <div id="error-results" style="display: none;">
+            <h1>
+                No se ha encontrado ningún usuario con ese nombre 🥲
+            </h1>
+        </div>
+        <div id="table-container"></div>
+        <div id="card-container"></div>
     </div>
-    <div id="search-bar-social">
-        <input type="text" id="search" placeholder="Search" onkeyup="searchFunction()">
-    </div>
-    <div id="table-container"></div>
-    <div id="card-container"></div>
 </body>
 <script src="../javascript/social.js"></script>
 </html>

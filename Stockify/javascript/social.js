@@ -1,7 +1,7 @@
 var data = []; // this will hold the data from API
 var view = "table"; // default view is "table
 
-
+document.getElementById('table-button').classList.add('active');
 
 function fetchData() {
     fetch('http://localhost:8080/socials')
@@ -9,19 +9,19 @@ function fetchData() {
     .then(json => {
         console.log(json);
         data = json;
-        displayTable(); // default display
+        displayViewSelected();
     });
 }
+
 
 function displayTable() {
     let tableHTML = '<table><tr><th>Name</th><th>Email</th><th>Subscription Plan</th><th>Portfolio Movements</th></tr>';
     data.forEach((item) => {
-        let color = getColor(item.portfolio_movements);
         tableHTML += `<tr>
                         <td>${item.name}</td>
                         <td>${item.email}</td>
                         <td>${item.subscription_plan}</td>
-                        <td><div class="circle" style="background-color:${color}"></div>${item.portfolio_movements}</td>
+                        <td>${item.portfolio_movements}</td> 
                       </tr>`;
     });
     tableHTML += '</table>';
@@ -32,7 +32,7 @@ function displayTable() {
 function displayCard() {
     let cardHTML = '';
     data.forEach((item) => {
-        let color = getColor(item.portfolio_movements);
+        let color = getCardColor(item.portfolio_movements); // Use different method for card color
         cardHTML += `<div class="card" style="background-image: linear-gradient(${color}, ${color})">
                         <p>Name: ${item.name}</p>
                         <p>Email: ${item.email}</p>
@@ -50,6 +50,12 @@ function getColor(portfolio_movements) {
     return 'red';
 }
 
+function getCardColor(portfolio_movements) { // New method for card color
+    if (portfolio_movements < 10) return '#FFA500'; // Different shades of orange
+    if (portfolio_movements >= 10 && portfolio_movements <= 25) return '#FF8C00';
+    return '#FF4500';
+}
+
 function searchFunction() {
     let searchValue = document.getElementById('search').value;
     fetch(`http://localhost:8080/socials/search?name=${searchValue}`)
@@ -64,16 +70,44 @@ function searchFunction() {
 
 function toggleVariable(viewSelected) {
     view = viewSelected;
+    // Remove the active class from all buttons
+    document.getElementById('table-button').classList.remove('active');
+    document.getElementById('card-button').classList.remove('active');
+
+    // Add the active class to the selected button
+    if(view === 'table') {
+        document.getElementById('table-button').classList.add('active');
+    } else if(view === 'card') {
+        document.getElementById('card-button').classList.add('active');
+    }
     displayViewSelected();
 }
 
 
+
+
 function displayViewSelected() {
-    console.log(view);
-    if (view === 'table') 
-    {displayTable();}
-    else if (view === 'card')
-    {displayCard();}
+    if (data.length === 0) {
+        
+        document.getElementById('error-results').style.display = 'block';
+
+        document.getElementById('table-container').style.display = 'none';
+        document.getElementById('card-container').style.display = 'none';
+
+    }
+    else {
+        document.getElementById('error-results').style.display = 'none';
+
+
+        document.getElementById('table-container').style.display = 'block';
+        document.getElementById('card-container').style.display = 'block';
+
+        if (view === 'table') 
+        {displayTable();}
+        else if (view === 'card')
+        {displayCard();}
+    }
+    
 }
 
 fetchData();

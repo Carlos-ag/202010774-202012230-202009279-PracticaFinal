@@ -58,3 +58,77 @@ fetch('http://localhost:8080/subscriptionPlans')
         subscriptionSelect.required = false;
         // alert('Hubo un problema con la solicitud: ' + error.message);
     });
+
+    function sendLoginRequest() {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        name = document.getElementById('name').value;
+        phone = document.getElementById('phone').value;
+
+        email = document.getElementById('email').value;
+        password = document.getElementById('password').value;
+        
+        subscriptionplan = document.getElementById('subscription').value;
+      
+
+        if (!name || !phone || !email || !password) {
+            new Error('Invalid data');
+        }
+
+        console.log("PLAN: " + subscriptionplan);
+
+        var raw = JSON.stringify({
+          "name": name,
+          "phone": phone,
+          "email": email,
+          "password": password
+        });
+      
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+      
+        url = "http://localhost:8080/users?subscriptionPlanId=" + subscriptionplan;
+        fetch(url, requestOptions)
+          .then(response => response.json())
+          .then(response => {
+            if (typeof response === 'object' && response !== null) {
+                console.log(response);
+                console.log(response.name);
+        
+                saveUserIdInCookie(response.id);
+                const cookie = getCookie2('userID');
+                userID = getUserIdFromCookie2();
+        
+                // Set the userID cookie
+                document.cookie = `userID=${userID}; path=/`;
+                window.name = response.name;
+                if (window.name != "") {
+                    window.location.href = "/html/";
+                }
+                // Redirect to the home page
+                //window.location.href = '/html/';
+            } else {
+                throw new Error('Email already exists');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Display an error message on the screen
+            const errorMessage = document.createElement('div');
+            errorMessage.classList.add('alert', 'alert-danger');
+            errorMessage.textContent = "Invalid data"
+            document.querySelector('.container-form').appendChild(errorMessage);
+        })
+    };
+      
+      // Call the function to send the login request
+      //sendLoginRequest();
+      
+      function redirectToLogin() {
+        window.location.href = "login.html";
+      }

@@ -1,5 +1,7 @@
 let previousPage = "home";
 
+
+////////////////////////////////////////////
 // Función para obtener una cookie
 function getCookie2(name) {
   let nameEQ = name + "=";
@@ -28,6 +30,16 @@ function getBaseUrl() {
     return `${protocol}//${host}/${repoName}`;
   }
 }
+
+// Función para borrar una cookie
+function deleteCookie(name) {
+  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+}
+
+
+
+
+//////////////////////////////////////////////////////////////////
 
 
 
@@ -113,6 +125,7 @@ function sidebarListeners() {
   profile.addEventListener("click", function () { loadPage("profile"); });
   login.addEventListener("click", function () {
     window.location.replace("../html/login.html");
+    deleteCookie("userId");
   });
 }
 

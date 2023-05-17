@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 body {
+  min-height: 100vh;
   background: -webkit-gradient(linear, left top, left bottom, from(rgb(10, 25, 47)), to(rgb(44, 83, 100)));
   background: linear-gradient(to bottom, rgb(10, 25, 47), rgb(44, 83, 100));
   color: whitesmoke;
@@ -12,13 +13,14 @@ img {
 }
 
 .container {
+  height: auto;
   width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 0.25fr 3fr;
-  gap: 5%;
-  padding: 5%;
+  gap: 3%;
+  padding: 3%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -52,6 +54,7 @@ img {
 }
 
 .container-form {
+  height: auto;
   grid-column: span 2;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -66,9 +69,10 @@ img {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-bottom: 30px;
 }
 
-input, textarea {
+input, textarea, select {
   border: 2px solid whitesmoke;
   background-color: rgba(255, 255, 255, 0.1);
   color: whitesmoke;
@@ -126,19 +130,19 @@ input:invalid:not(:placeholder-shown)::placeholder, textarea:invalid:not(:placeh
   color: red;
 }
 
-#my-form:invalid:not(:-moz-placeholder-shown) ~ #popup {
+#register-form:invalid:not(:-moz-placeholder-shown) ~ #popup {
   display: block;
 }
 
-#my-form:invalid:not(:-ms-input-placeholder) ~ #popup {
+#register-form:invalid:not(:-ms-input-placeholder) ~ #popup {
   display: block;
 }
 
-#my-form:invalid:not(:placeholder-shown) ~ #popup {
+#register-form:invalid:not(:placeholder-shown) ~ #popup {
   display: block;
 }
 
-button {
+button, input[type=submit] {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 1em;
@@ -146,7 +150,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+button:hover, input[type=submit]:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -184,4 +188,25 @@ button:hover {
 
 .form-control::placeholder {
   color: rgba(255, 255, 255, 0.7);
-}/*# sourceMappingURL=login.css.map */
+}
+
+.button-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+#login-button {
+  background-color: transparent;
+  border: 2px solid whitesmoke;
+  color: whitesmoke;
+}
+
+#login-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}/*# sourceMappingURL=register.css.map */

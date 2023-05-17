@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
+
 body {
+    min-height: 100vh;
     background: linear-gradient(to bottom, rgb(10, 25, 47), rgb(44, 83, 100));
     color: whitesmoke;
     font-family: 'Poppins', sans-serif;
 }
+
 
 img {
     max-width: 28%;
@@ -12,13 +15,14 @@ img {
 }
 
 .container {
+    height: auto;
     width: 100vw;
     height: 100vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr 0.25fr 3fr;
-    gap: 5%;
-    padding: 5%;
+    gap: 3%;
+    padding: 3%;
     box-sizing: border-box;
 }
 
@@ -37,16 +41,18 @@ img {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-
 .container-form {
+    height: auto;
     grid-column: span 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 30px; // Add space at the bottom
 }
 
-input, textarea {
+
+input, textarea, select {
     border: 2px solid whitesmoke;
     background-color: rgba(255, 255, 255, 0.1);
     color: whitesmoke;
@@ -64,21 +70,20 @@ input:invalid:not(:placeholder-shown)::placeholder, textarea:invalid:not(:placeh
     color: red;
 }
 
-#my-form:invalid:not(:placeholder-shown) ~ #popup {
+#register-form:invalid:not(:placeholder-shown) ~ #popup {
     display: block;
 }
 
-button {
+button, input[type=submit] {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 1em;
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+button:hover, input[type=submit]:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
-
 
 .form-container {
     background: rgba(255, 255, 255, 0.1);
@@ -97,4 +102,21 @@ button:hover {
 
 .form-control::placeholder {
     color: rgba(255, 255, 255, 0.7);
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+
+#login-button {
+    background-color: transparent;
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
+}
+
+#login-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }

@@ -1,5 +1,6 @@
 package com.stockify.stockifyapp.controller;
 
+import com.stockify.stockifyapp.common.PasswordEncrypter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -56,6 +57,8 @@ public class UserController {
     @CrossOrigin(origins = "*")
     public ResponseEntity<User> addUser(@RequestBody User user, @RequestParam("subscriptionPlanId") Integer subscriptionPlanId) {
         try {
+            PasswordEncrypter pwe = new PasswordEncrypter();
+            user.setPassword(pwe.encrypt(user.getPassword()));
             User newUser = userService.addUser(user, subscriptionPlanId);
             logger.info("Added user: " + newUser.toString());
             return ResponseEntity.ok(newUser);

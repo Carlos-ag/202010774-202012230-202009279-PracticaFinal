@@ -66,6 +66,10 @@ select {
   color: white;
 }
 
+select:focus {
+  background-color: #2c5364 !important; 
+}
+
 input:invalid:not(:placeholder-shown),
 textarea:invalid:not(:placeholder-shown) {
   border: 2px solid red;

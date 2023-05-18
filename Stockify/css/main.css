@@ -42,7 +42,8 @@ a:visited {
   color: lightgray;
 }
 
-a:hover, a:active {
+a:hover,
+a:active {
   color: #eee;
 }
 
@@ -63,11 +64,13 @@ table {
   margin-right: auto;
 }
 
-td, th {
+td,
+th {
   text-align: center;
 }
 
-td, th {
+td,
+th {
   vertical-align: middle;
 }
 
@@ -102,6 +105,10 @@ input[type=submit]:hover {
   height: 70vh;
 }
 
+.newss-container a {
+  text-decoration: none;
+}
+
 .link-news {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -117,24 +124,35 @@ input[type=submit]:hover {
       -ms-flex-align: center;
           align-items: center;
   padding: 10px;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  background-color: #343a40;
   margin-bottom: 1%;
+  text-decoration: none;
 }
 
-.link-news:hover {
-  background-color: #6c757d;
+.link-news > img {
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  width: 30%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.link-news h3 {
+  font-size: x-large;
+  color: white;
+}
+
+.link-news:hover h3 {
+  font-size: x-large;
+  color: #3498db;
 }
 
 .link-news > * {
   margin: 10px;
 }
 
-.link-news > img {
-  width: 10%;
-  -o-object-fit: cover;
-     object-fit: cover;
+.link-news p {
+  text-decoration: none !important;
 }
 
 .link-news > div {
@@ -164,6 +182,7 @@ input[type=submit]:hover {
 
 .link-news > div > p {
   font-style: italic;
+  text-decoration: none;
 }
 
 #loader-right-screen {

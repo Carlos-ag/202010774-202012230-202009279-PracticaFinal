@@ -1,239 +1,285 @@
-@use "constants";
+  @use "constants";
 
-html {
-  font-size: 1.3vw;
-}
+  html {
+    font-size: 1.3vw;
+  }
 
-.main {
-  margin: constants.$margin-main;
-  margin-bottom: 9%;
-}
+  .main {
+    margin: constants.$margin-main;
+    margin-bottom: 9%;
+  }
 
-* {
-  font-family: "Lato", sans-serif;
-}
+  * {
+    font-family: "Lato", sans-serif;
+  }
 
-.search-result {
-  padding: 2%;
-  display: flex;
-  // text color black
-  color: black;
-  // make it unselectable
-  user-select: none;
-  // align to the left
-  text-align: left;
-}
+  #parent-container {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+  }
 
-.search-result:hover {
-  cursor: pointer;
-  background-color: constants.$secondary-color;
-}
+  .widget-container {
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+  }
 
-body {
-  background-color: constants.$primary-color;
-  color: whitesmoke;
-}
+  .widget-container:last-child {
+    border-right: none;
+  }
 
-a {
-  color: aliceblue;
-}
+  .widget-container iframe {
+    width: 100%;
+    height: 500px; /* Adjust as needed */
+  }
 
-a:visited {
-  color: lightgray;
-}
-
-a:hover,
-a:active {
-  color: #eee;
-}
-
-textarea {
-  resize: none;
-}
-
-tbody tr:nth-child(odd) {
-  background-color: constants.$ligh-gray;
-}
-
-tbody tr:nth-child(even) {
-  background-color: constants.$dark-gray;
-}
-
-table {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-td,
-th {
-  text-align: center;
-}
-
-td,
-th {
-  vertical-align: middle;
-}
-
-.footer {
-  margin-top: 2%;
-  margin-bottom: 1%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-input[type="submit"] {
-  background-color: whitesmoke;
-  color: constants.$primary-color;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-}
-
-input[type="submit"]:hover {
-  background-color: #6c757d;
-}
-
-.plotly-graph {
-  height: 70vh;
-}
-
-.newss-container a{
+  .kodfun-galeri {
+    display: flex; 
+    height: 80vh; // Set this to a percentage of the viewport height
+    gap: 1rem;
   
+    > div {
+      flex: 1;
+      border-radius: 1rem;
+      transition: all .8s cubic-bezier(.25, .4, .45, 1.4);
+  
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block; // Add this to remove any extra space below the iframe
+      }
+    }
+  
+    > div:hover {
+      flex: 5;
+    }
+  }
+  
+
+  .search-result {
+    padding: 2%;
+    display: flex;
+    // text color black
+    color: black;
+    // make it unselectable
+    user-select: none;
+    // align to the left
+    text-align: left;
+  }
+
+  .search-result:hover {
+    cursor: pointer;
+    background-color: constants.$secondary-color;
+  }
+
+  body {
+    background-color: constants.$primary-color;
+    color: whitesmoke;
+  }
+
+  a {
+    color: aliceblue;
+  }
+
+  a:visited {
+    color: lightgray;
+  }
+
+  a:hover,
+  a:active {
+    color: #eee;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: constants.$ligh-gray;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: constants.$dark-gray;
+  }
+
+  table {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  td,
+  th {
+    text-align: center;
+  }
+
+  td,
+  th {
+    vertical-align: middle;
+  }
+
+  .footer {
+    margin-top: 2%;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  input[type="submit"] {
+    background-color: whitesmoke;
+    color: constants.$primary-color;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #6c757d;
+  }
+
+  .plotly-graph {
+    height: 70vh;
+  }
+
+  .newss-container a{
+    
+      text-decoration: none;
+    
+  }
+
+  .link-news {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 1%;
     text-decoration: none;
-  
-}
-
-.link-news {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 1%;
-  text-decoration: none;
-}
-
-.link-news > img {
-  max-height: fit-content;
-  width: 30%;
-  object-fit: cover;
-}
-
-.link-news h3 {
-  font-size: x-large;
-  color: white;
-}
-
-.link-news:hover h3 {
-  font-size: x-large;
-  color: #3498db;
-}
-
-.link-news > * {
-  margin: 10px;
-}
-
-.link-news p {
-  text-decoration: none !important;
-}
-
-.link-news > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.link-news > div > * {
-  text-align: left;
-  margin: 0;
-}
-
-.link-news > div > h3 {
-  font-weight: bold;
-}
-
-.link-news > div > p {
-  font-style: italic;
-  text-decoration: none;
-}
-
-#loader-right-screen {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 5vh;
-  height: 5vh;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-  z-index: 999;
-  // center it on his parent
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  visibility: hidden;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
   }
-  100% {
-    transform: rotate(360deg);
+
+  .link-news > img {
+    max-height: fit-content;
+    width: 30%;
+    object-fit: cover;
   }
-}
 
-.center {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 100vh;
-}
-
-.circle {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  box-shadow: 0px 0px 1px 1px #0000001a;
-}
-
-.pulse {
-  animation: pulse-animation 2s infinite;
-}
-
-@keyframes pulse-animation {
-  0% {
-    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2);
+  .link-news h3 {
+    font-size: x-large;
+    color: white;
   }
-  100% {
-    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+
+  .link-news:hover h3 {
+    font-size: x-large;
+    color: #3498db;
   }
-}
 
-.master {
-  color: black;
-  float: right;
-}
+  .link-news > * {
+    margin: 10px;
+  }
 
-@media (max-width: 900px) {
+  .link-news p {
+    text-decoration: none !important;
+  }
+
+  .link-news > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .link-news > div > * {
+    text-align: left;
+    margin: 0;
+  }
+
+  .link-news > div > h3 {
+    font-weight: bold;
+  }
+
+  .link-news > div > p {
+    font-style: italic;
+    text-decoration: none;
+  }
+
+  #loader-right-screen {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 5vh;
+    height: 5vh;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    z-index: 999;
+    // center it on his parent
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .center {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 1px 1px #0000001a;
+  }
+
+  .pulse {
+    animation: pulse-animation 2s infinite;
+  }
+
+  @keyframes pulse-animation {
+    0% {
+      box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+      box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+    }
+  }
+
   .master {
-    display: none;
+    color: black;
+    float: right;
   }
-}
 
-.green {
-  background: #62bd19;
-}
+  @media (max-width: 900px) {
+    .master {
+      display: none;
+    }
+  }
 
-.red {
-  background: #ff0000;
-}
+  .green {
+    background: #62bd19;
+  }
 
-#server-status {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
+  .red {
+    background: #ff0000;
+  }
+
+  #server-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }

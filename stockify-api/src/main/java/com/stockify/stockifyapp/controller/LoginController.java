@@ -27,4 +27,6 @@ public class LoginController {
             return ResponseEntity.badRequest().build();
         return ResponseEntity.ok(loginService.findUser(message.getPassword(), message.getEmail()));
     }
+
+
 }

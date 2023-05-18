@@ -1,21 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 body {
-  min-height: 100vh;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgb(10, 25, 47)), to(rgb(44, 83, 100)));
-  background: linear-gradient(to bottom, rgb(10, 25, 47), rgb(44, 83, 100));
-  color: whitesmoke;
+  margin: 0;
+  color: white !important;
   font-family: "Poppins", sans-serif;
 }
 
-img {
-  max-width: 28%;
-  border-radius: 50%;
+.gradient-wrapper {
+  min-height: 100vh;
+  /* Set the wrapper to cover the entire viewport */
+  background: -webkit-gradient(linear, left top, left bottom, from(rgb(10, 25, 47)), to(rgb(44, 83, 100)));
+  background: linear-gradient(to bottom, rgb(10, 25, 47), rgb(44, 83, 100));
+  background-attachment: fixed;
+  /* Fix the background gradient */
+  overflow: auto;
+  /* Enable scrolling on the wrapper */
 }
 
 .container {
-  height: auto;
+  height: 100%;
   width: 100vw;
-  height: 100vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 0.25fr 3fr;
@@ -25,7 +28,13 @@ img {
           box-sizing: border-box;
 }
 
-.content-left, .content-right {
+img {
+  max-width: 28%;
+  border-radius: 50%;
+}
+
+.content-left,
+.content-right {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -72,10 +81,12 @@ img {
   margin-bottom: 30px;
 }
 
-input, textarea, select {
-  border: 2px solid whitesmoke;
+input,
+textarea,
+select {
+  border: 2px solid white;
   background-color: rgba(255, 255, 255, 0.1);
-  color: whitesmoke;
+  color: white;
 }
 
 input:invalid:not(:-moz-placeholder-shown), textarea:invalid:not(:-moz-placeholder-shown) {
@@ -86,7 +97,8 @@ input:invalid:not(:-ms-input-placeholder), textarea:invalid:not(:-ms-input-place
   border: 2px solid red;
 }
 
-input:invalid:not(:placeholder-shown), textarea:invalid:not(:placeholder-shown) {
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
   border: 2px solid red;
 }
 
@@ -98,7 +110,8 @@ input:invalid:focus:not(:-ms-input-placeholder), textarea:invalid:focus:not(:-ms
   outline: none;
 }
 
-input:invalid:focus:not(:placeholder-shown), textarea:invalid:focus:not(:placeholder-shown) {
+input:invalid:focus:not(:placeholder-shown),
+textarea:invalid:focus:not(:placeholder-shown) {
   outline: none;
 }
 
@@ -126,7 +139,8 @@ input:invalid:not(:-ms-input-placeholder)::placeholder, textarea:invalid:not(:-m
   color: red;
 }
 
-input:invalid:not(:placeholder-shown)::placeholder, textarea:invalid:not(:placeholder-shown)::placeholder {
+input:invalid:not(:placeholder-shown)::placeholder,
+textarea:invalid:not(:placeholder-shown)::placeholder {
   color: red;
 }
 
@@ -142,7 +156,8 @@ input:invalid:not(:placeholder-shown)::placeholder, textarea:invalid:not(:placeh
   display: block;
 }
 
-button, input[type=submit] {
+button,
+input[type=submit] {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 1em;
@@ -150,7 +165,8 @@ button, input[type=submit] {
   transition: background-color 0.3s ease;
 }
 
-button:hover, input[type=submit]:hover {
+button:hover,
+input[type=submit]:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 

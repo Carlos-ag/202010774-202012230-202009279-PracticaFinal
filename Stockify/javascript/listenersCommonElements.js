@@ -110,6 +110,7 @@ function changeFavicon(iconName) {
 
 function sidebarListeners() {
   const home = document.getElementById("home");
+  const news = document.getElementById("news");
   const summary = document.getElementById("summary");
   const portfolio = document.getElementById("portfolio");
   const dividends = document.getElementById("dividends");
@@ -118,6 +119,7 @@ function sidebarListeners() {
   const login = document.getElementById("login");
 
   home.addEventListener("click", function () { loadPage("home"); });
+  news.addEventListener("click", function () { loadPage("news"); });
   summary.addEventListener("click", function () { loadPage("summary"); });
   portfolio.addEventListener("click", function () { loadPage("portfolio"); });
   dividends.addEventListener("click", function () { loadPage("dividends"); });

@@ -9,6 +9,11 @@
     margin-bottom: 9%;
   }
 
+  .main-home {
+    margin: constants.$margin-main;
+    margin-bottom: 0%;
+  }
+
   * {
     font-family: "Lato", sans-serif;
   }
@@ -37,7 +42,7 @@
 
   .kodfun-galeri {
     display: flex; 
-    height: 80vh; // Set this to a percentage of the viewport height
+    height: 65vh; // Set this to a percentage of the viewport height
     gap: 1rem;
   
     > div {

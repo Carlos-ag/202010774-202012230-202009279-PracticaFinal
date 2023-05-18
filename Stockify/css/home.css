@@ -1,0 +1,8 @@
+body.home {
+  overflow-y: hidden;
+}
+
+.home .home-content {
+  height: 80%;
+  overflow-y: auto;
+}/*# sourceMappingURL=home.css.map */

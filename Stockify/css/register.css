@@ -225,6 +225,9 @@ input[type=submit]:hover {
   background-color: transparent;
   border: 2px solid whitesmoke;
   color: whitesmoke;
+  width: 100px;
+  height: 50px;
+  margin-top: 20px;
 }
 
 #login-button:hover {

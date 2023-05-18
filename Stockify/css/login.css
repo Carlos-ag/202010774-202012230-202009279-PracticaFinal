@@ -23,7 +23,9 @@ body {
 }
 
 .btn-register:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #3c697d !important;
+  border: 2px solid whitesmoke !important;
+  color: whitesmoke;
 }
 
 img {

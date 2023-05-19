@@ -45,41 +45,68 @@ La aplicación cuenta con avanzadas funcionalidades como:
 Para representar las bases de datos creadas hemos creado el diagrama que se puede ver a continuación:
  ![Diagrama SQL](assets/sql_diagram.png)
 
- A continuación, se presenta la documentación de las bases de datos en forma de una lista con las tablas creadas y los campos correspondientes:
+ Aquí están las tablas con las descripciones solicitadas:
 
-1. Tabla SUBSCRIPTION_PLANS (Tabla de planes de suscripción de pago):
-   - ID (INT, NOT NULL, AUTO_INCREMENT): Identificador único de cada plan de suscripción.
-   - NAME (VARCHAR(255), NOT NULL): Nombre del plan de suscripción.
-   - PRICE (DOUBLE, NOT NULL): Precio del plan de suscripción.
+### Tabla: SUBSCRIPTION_PLANS
 
-2. Tabla USERS (Tabla de los datos personales de los usuarios):
-   - ID (INT, NOT NULL, AUTO_INCREMENT): Identificador único de cada usuario.
-   - NAME (VARCHAR(255), NOT NULL): Nombre del usuario.
-   - EMAIL (VARCHAR(255), NOT NULL): Correo electrónico del usuario.
-   - PHONE (VARCHAR(255), NOT NULL): Teléfono del usuario.
-   - SUBSCRIPTION_PLAN (INT, NOT NULL): Identificador del plan de suscripción al que está suscrito el usuario (clave foránea que hace referencia a la tabla SUBSCRIPTION_PLANS).
+| Columna | Tipo de Datos | Descripción |
+| --- | --- | --- |
+| ID | INT, NOT NULL, AUTO_INCREMENT | Identificador único de cada plan de suscripción. |
+| NAME | VARCHAR(255), NOT NULL | Nombre del plan de suscripción. |
+| PRICE | DOUBLE, NOT NULL | Precio del plan de suscripción. |
 
-3. Tabla SIGNED_MESSAGES (Tabla de los mensajes de contacto de los usuarios ya registrados en la aplicación):
-   - ID (INT, NOT NULL, AUTO_INCREMENT): Identificador único de cada mensaje firmado.
-   - USER_ID (INT, NOT NULL): Identificador del usuario que envía el mensaje (clave foránea que hace referencia a la tabla USERS).
-   - MESSAGE (VARCHAR(255), NOT NULL): Contenido del mensaje.
-   - TIMESTAMP (TIMESTAMP, NOT NULL): Fecha y hora en la que se envió el mensaje.
-   - CONVERSATION_ID (INT, NOT NULL): Identificador de la conversación a la que pertenece el mensaje.
+### Tabla: USERS
 
-4. Tabla UNSIGNED_MESSAGES (Tabla de los mensajes de contacto de los usuarios no registrados en la aplicación):
-   - ID (INT, NOT NULL, AUTO_INCREMENT): Identificador único de cada mensaje sin firmar.
-   - NAME (VARCHAR(255), NOT NULL): Nombre del remitente del mensaje.
-   - EMAIL (VARCHAR(255), NOT NULL): Correo electrónico del remitente del mensaje.
-   - MESSAGE (VARCHAR(255), NOT NULL): Contenido del mensaje.
-   - TIMESTAMP (TIMESTAMP, NOT NULL): Fecha y hora en la que se envió el mensaje.
+| Columna | Tipo de Datos | Descripción |
+| --- | --- | --- |
+| ID | INT, NOT NULL, AUTO_INCREMENT | Identificador único de cada usuario. |
+| NAME | VARCHAR(255), NOT NULL | Nombre del usuario. |
+| EMAIL | VARCHAR(255), NOT NULL | Correo electrónico del usuario. |
+| PHONE | VARCHAR(255), NOT NULL | Teléfono del usuario. |
+| PASSWORD | VARCHAR(255), NOT NULL | Contraseña del usuario. |
+| SUBSCRIPTION_PLAN | INT, NOT NULL | Identificador del plan de suscripción al que está suscrito el usuario. Clave foránea que hace referencia a la tabla SUBSCRIPTION_PLANS. |
 
-5. Tabla PORTFOLIO_MOVEMENTS (Tabla de los movimientos del portafolio de los usuarios, es decir, las compras y ventas de instrumentos financieros):
-   - ID (INT, NOT NULL, AUTO_INCREMENT): Identificador único de cada movimiento del portafolio.
-   - USER_ID (INT, NOT NULL): Identificador del usuario asociado al movimiento del portafolio (clave foránea que hace referencia a la tabla USERS).
-   - TICKER (VARCHAR(255), NOT NULL): Símbolo de cotización (ticker) del instrumento financiero.
-   - QUANTITY (INT, NOT NULL): Cantidad de instrumentos involucrados en el movimiento.
-   - PRICE (DOUBLE, NOT NULL): Precio del instrumento financiero en el momento del movimiento.
-   - DATE (DATE, NOT NULL): Fecha del movimiento del portafolio.
+### Tabla: SIGNED_MESSAGES
+
+| Columna | Tipo de Datos | Descripción |
+| --- | --- | --- |
+| ID | INT, NOT NULL, AUTO_INCREMENT | Identificador único de cada mensaje firmado. |
+| USER_ID | INT, NOT NULL | Identificador del usuario que envía el mensaje. Clave foránea que hace referencia a la tabla USERS. |
+| MESSAGE | VARCHAR(255), NOT NULL | Contenido del mensaje. |
+| TIMESTAMP | TIMESTAMP, NOT NULL | Fecha y hora en la que se envió el mensaje. |
+| CONVERSATION_ID | INT, NOT NULL | Identificador de la conversación a la que pertenece el mensaje. |
+
+### Tabla: UNSIGNED_MESSAGES
+
+| Columna | Tipo de Datos | Descripción |
+| --- | --- | --- |
+| ID | INT, NOT NULL, AUTO_INCREMENT | Identificador único de cada mensaje sin firmar. |
+| NAME | VARCHAR(255), NOT NULL | Nombre del remitente del mensaje. |
+| EMAIL | VARCHAR(255), NOT NULL | Correo electrónico del remitente del mensaje. |
+| MESSAGE | VARCHAR(255), NOT NULL | Contenido del mensaje. |
+| TIMESTAMP | TIMESTAMP, NOT NULL | Fecha y hora en la que se envió el mensaje. |
+
+### Tabla: PORTFOLIO_MOVEMENTS
+
+| Columna | Tipo de Datos | Descripción |
+| --- | --- | --- |
+| ID | INT, NOT NULL, AUTO_INCREMENT | Identificador único de cada movimiento del portafolio. |
+| USER_ID | INT, NOT NULL | Identificador del usuario asociado al movimiento del portafolio. Clave foránea que hace referencia a la tabla USERS. |
+| TICKER | VARCHAR(255), NOT NULL | Símbolo de cotización (ticker) del instrumento financiero. |
+| QUANTITY | INT, NOT NULL | Cantidad de instrumentos involucrados en el movimiento. |
+| PRICE | DOUBLE, NOT NULL | Precio del instrumento financiero en el momento del movimiento. |
+| DATE | DATE, NOT NULL | Fecha del movimiento del portafolio. |
+
+### Vista: SOCIAL
+
+| Columna | Descripción |
+| --- | --- |
+| USER_NAME | Nombre del usuario. |
+| USER_EMAIL | Correo electrónico del usuario. |
+| SUBSCRIPTION_PLAN | Nombre del plan de suscripción al que está suscrito el usuario. |
+| PORTFOL
+
+IO_MOVEMENTS | Cantidad de movimientos del portafolio asociados al usuario. |
  
 
 ## Endpoints de la API: todo cambiar

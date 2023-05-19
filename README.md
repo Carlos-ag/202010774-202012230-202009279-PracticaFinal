@@ -43,7 +43,7 @@ La aplicación cuenta con avanzadas funcionalidades como:
 
 ## Bases de datos creadas: TODO cambiar imagen y texto
 Para representar las bases de datos creadas hemos creado el diagrama que se puede ver a continuación:
- ![Diagrama SQL](assets/sql_diagram.png)
+ ![Diagrama SQL](assets/diagrama_sql.png)
 
  Aquí están las tablas con las descripciones solicitadas:
 

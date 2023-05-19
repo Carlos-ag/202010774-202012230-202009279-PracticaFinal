@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -38,9 +38,24 @@ class LoginTest {
 
         HttpEntity<LoginRequest> request = new HttpEntity<>(lr,headers);
 
-        ResponseEntity<User> result = this.restTemplate.postForEntity(uri,request,User.class);
 
-        assertEquals(200, result.getStatusCode());
+        ResponseEntity<HashMap<String,Object>> result = this.restTemplate.exchange(
+                uri,
+                HttpMethod.POST,
+                new HttpEntity<>(request),
+                new ParameterizedTypeReference<HashMap<String,Object>>() {}
+        );
+
+
+
+
+        assertEquals(HttpStatus.OK, result.getStatusCode());
+
+        HashMap<String, Object> responseBody = result.getBody();
+        String name = (String) responseBody.get("name");
+
+        assertEquals("Alice", name);
+
     }
 
 

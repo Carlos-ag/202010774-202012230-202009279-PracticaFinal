@@ -45,7 +45,6 @@ La aplicación cuenta con avanzadas funcionalidades como:
 Para representar las bases de datos creadas hemos creado el diagrama que se puede ver a continuación:
  ![Diagrama SQL](assets/diagrama_sql.png)
 
- Aquí están las tablas con las descripciones solicitadas:
 
 ### Tabla: SUBSCRIPTION_PLANS
 

@@ -45,6 +45,7 @@ public class User {
         {
             this.password = password;
         }
+        //this.password = password;
     }
 
     public Integer getId() {

@@ -1,49 +1,47 @@
-# Stockify
+# Stockify - Práctica final
+# Proyecto realizado por:
+# Carlos Martín de Argila Lorente, Carlos Marí Noguera, Miguel Ángel Fernández Villar
 
-# Práctica 5:
+## Introducción:
 
-En esta práctica se ha implementado una base de datos SQL gracias al DBMS H2. Además, se han incluido pruebas unitarias para probar los controller de las APIs para verificar el correcto funcionamiento de las mismas.
+Este es el repositorio se ha realizada en el cuadro de PROGRAMACIÓN DE APLICACIONES TELEMÁTICAS.
+Se ha realizado tanto el frontend como el backend de una aplicación completa para el seguimiento de acciones y mercados financieros y de una cartera. La aplicacion personaliza el conteido para cada usuario mostrandole la información de su cartera una vez que ha iniciado sesión.
 
-## Puntos adicionales:
-Se han usado varios puntos adicionales en esta práctica:
+## Overview de la aplicación
+La aplicación cuenta con varias secciones:
+-1. Presentación: disponemos de una pagina web de presención que permite conocer al usuario de primera mano las funcionalidades de nuestra aplicación así como los planes de suscripción que tiene a su alcance.
+-2. Login/Registro: aquí es donde el usuario puede crearse una cuenta o inciar sesión
+-3. Aplicación: La aplicación en si, se puede divir en 4 secciones. Aunque la hemos programado para optimizar la UX de tal manera que solo se actualiza el Main, porque como el resto de secciones siempre son iguales no tienen porque cambiar. Las 4 secciones son:
+- Header: esta sección se compone de un logo (que te lleva a la página de inicio) y de una search bar autocompletable (cuidado API limit 5 busquedas por minuto) que permite al usuario buscar acciones y para obtener su precio y un gráfico de su cotización. 
+- Sidebar: Está sección permite al usuario navegar entre las distintas pantallas de la aplicación. Dispone de varios botones:
+1. Inicio: Te da la bienvenida a la aplicación con uan bonita vista de las cotizaciones de los principales indices de Estados Unidos
+2. Noticias: Incluye noticias de hoy relevantes a los mercados
+3. Resumen: incluye unos gráficos generados en Python con plotly (que en un futuro se podría hacer otro endpoint para ir actualizandolos con los datos reales del usuario)
+4. Cartera: En esta pestaña el usuario puede exportar/importar una cartera de acciones desde un CSV, y añadir/modificar/borrar movimientos de la cartera de acciones. Se muestran en una tabla todos los movimientos del usuario
+5. Dividendos: Esta página es parecida a la de resumen, solo que en esta se hace un resumen de los dividendos que ha cobrado el usuario. Al igual que resumen, en un futuro se podrían actualizar los plotly con los datos reales del usuario.
+6. Social: Esta pestaña permite al usuario relacionarse con otros usuarios de la aplicacion viendo el número de movimientos que han hecho. Puede buscar por usuario, y ver los resultados tanto en forma de tabla como de cards. 
+7. Mi perfil: permite al usuario contactar con el soporte técnico con una interfaz similar a la de Whatsapp y también el usuario aquí puede cambiar información relativa a su cuenta. 
+8. Cerrar sesión: se cierra sesión de la cuenta existente.
+- Main: en el main se muestra el contenido seleccionado en la sidebar o el gráfico de la acción buscada en la search bar.
+- Footer: en el footer siempre está disponible un mensaje por si el usuario quiere contactar con soporte técnico.
 
-### Transacciones:
+## Funcionalidades a destacar:
+La aplicación cuenta con avanzadas funcionalidades como:
+- autentificación (se verifica que un usuario no autentificado no pueda acceder a contenido restringido a usuarios que han iniciado sesión). Si intentan acceder sin iniciar sesión salta una alerta y se les redirecciona automaticamente a la página del login.
+- Cookies
+- views, 
+- queries complejas con joins de varias tablas, 
+- logs, 
+- tests, 
+- llamadas a APIs(tanto del backend como APIs externas), 
+- actualización solamente del contenido de la web que cambiante (no toda la web), uso de 
+- SCSS
+- Bootstrap
+- Transaccionales (principalmente para asegurar que cuando se importa una cartera a través de un CSV se cargue entera la cartera)
+- Gestión de errores
+- Actuator para verificar que el backend está activo
 
-Hemos implementado también un `@Transactional` para garantizar que la operación de guardar todos los movimientos de cartera en la base de datos se realice como una transacción atómica. El uso de `@Transactional` asegura que todos los movimientos se agreguen correctamente a la base de datos, o en caso de cualquier error, se revierta la transacción, evitando así estados inconsistentes en la base de datos.
-
-La anotación `@Transactional` en el método `saveAllMovements()` del repositorio tiene el siguiente propósito:
-
-1. **Atomicidad**: Si alguno de los movimientos no se guarda correctamente en la base de datos (por ejemplo, debido a restricciones de integridad), se revertirá toda la transacción y no se guardarán ninguno de los movimientos. Esto garantiza que la base de datos siempre esté en un estado consistente y no haya movimientos parciales guardados.
-
-2. **Aislamiento**: La anotación `@Transactional` también garantiza que la operación se ejecute con un cierto nivel de aislamiento de otras transacciones concurrentes. Dependiendo de la configuración y el motor de la base de datos, esto puede incluir la prevención de lecturas sucias, lecturas no repetibles y/o fantasmas.
-
-3. **Gestión de errores**: Si ocurre un error durante la ejecución de la transacción, Spring manejará automáticamente el proceso de deshacer los cambios y lanzará una excepción. Esto simplifica el manejo de errores en el código del servicio, ya que no es necesario manejar explícitamente el proceso de reversión de la transacción.
-
-En resumen, al utilizar la anotación `@Transactional` en nuestro método `saveAllMovements()`, nos aseguramos de que todos los movimientos se guarden de manera atómica y segura en la base de datos, evitando posibles problemas de consistencia y simplificando el manejo de errores.
-
-### Queries SQL avanzadas:
-
-1. Método `findLatestMessagesByUserId(Integer userId)`:
-
-Este método devuelve una lista de el mensaje más recientes de cada conversación asociada con un usuario específico, identificado por su `userId`.
-
-La consulta SQL utilizada en este método es una subconsulta correlacionada. Primero, se seleccionan el `CONVERSATION_ID` y el `MAX(TIMESTAMP)` de la tabla `SIGNED_MESSAGES` agrupados por `CONVERSATION_ID`, solo para las filas que coinciden con el `USER_ID` especificado. Luego, se realiza una unión (JOIN) de los resultados con la tabla `SIGNED_MESSAGES` utilizando las condiciones de que `CONVERSATION_ID` y `TIMESTAMP` sean iguales. Finalmente, se filtran los resultados para obtener solo las filas con el `USER_ID` especificado.
-
-El uso de esta consulta compleja permite obtener los últimos mensajes de cada conversación del usuario de manera eficiente y con una sola consulta a la base de datos.
-
-`SELECT t1.* FROM SIGNED_MESSAGES AS t1 JOIN (SELECT CONVERSATION_ID, MAX(TIMESTAMP) as MAX_TIMESTAMP FROM SIGNED_MESSAGES WHERE USER_ID = ? GROUP BY CONVERSATION_ID) AS t2 ON t1.CONVERSATION_ID = t2.CONVERSATION_ID AND t1.TIMESTAMP = t2.MAX_TIMESTAMP WHERE t1.USER_ID = ?`
-
-2. Método `findLastConversationId()`:
-
-Este método devuelve el último `CONVERSATION_ID` en la tabla `SIGNED_MESSAGES`.
-
-La consulta SQL utilizada en este método es una agregación simple, utilizando la función `MAX()` para encontrar el valor máximo de `CONVERSATION_ID` en la tabla `SIGNED_MESSAGES`. Aunque esta consulta no es tan compleja como la anterior, sigue siendo importante mencionarla en la documentación, ya que es esencial para la funcionalidad del sistema. 
-
-`SELECT MAX(CONVERSATION_ID) FROM SIGNED_MESSAGES`
-
-
-
-## Bases de datos creadas:
+## Bases de datos creadas: TODO cambiar imagen y texto
 Para representar las bases de datos creadas hemos creado el diagrama que se puede ver a continuación:
  ![Diagrama SQL](assets/sql_diagram.png)
 
@@ -84,7 +82,7 @@ Para representar las bases de datos creadas hemos creado el diagrama que se pued
    - DATE (DATE, NOT NULL): Fecha del movimiento del portafolio.
  
 
-## Endpoints de la API:
+## Endpoints de la API: todo cambiar
 
 A continuación se presenta la documentación de los endpoints de las APIs proporcionadas:
 

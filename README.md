@@ -108,25 +108,35 @@ Para representar las bases de datos creadas hemos creado el diagrama que se pued
 IO_MOVEMENTS | Cantidad de movimientos del portafolio asociados al usuario. |
  
 
-## Endpoints de la API: todo cambiar
+## Endpoints de la API: TODO: releer
 
 A continuación se presenta la documentación de los endpoints de las APIs proporcionadas:
 
-### PortfolioController
+1. **POST /login**
+   
+   Realiza el inicio de sesión de un usuario con correo y contraseña.
+   
+   - Parámetros de cuerpo (JSON):
+     - `email`: Correo del usuario (String)
+     - `password`: Contraseña del usuario (String)
+   
+   - Respuestas:
+     - `200 OK`: Si las credenciales son correctas y el inicio de sesión es exitoso.
+     - `400 BAD_REQUEST`: Si las credenciales son incorrectas.
 
-1. **GET /portfolio/{userID}**
-
+2. **GET /portfolio/{userID}**
+   
    Obtiene el portafolio del usuario especificado por el ID de usuario.
-
+   
    - Parámetros de ruta:
      - `userID`: ID del usuario (Integer)
-
+   
    - Respuestas:
      - `200 OK`: Si se encuentra el portafolio del usuario.
      - `400 BAD_REQUEST`: Si ocurre un error al obtener el portafolio.
      - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
 
-2. **POST /movement**
+3. **POST /movement**
 
    Añade un nuevo movimiento al portafolio.
 
@@ -138,169 +148,303 @@ A continuación se presenta la documentación de los endpoints de las APIs propo
      - `400 BAD_REQUEST`: Si ocurre un error al añadir el movimiento.
      - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
 
-3. **POST /upload**
-
-   Sube y procesa un archivo CSV con movimientos del portafolio.
-
-   - Parámetros de formulario:
-     - `file`: Archivo CSV (MultipartFile)
-
-   - Respuestas:
-     - `200 OK`: Si se sube y procesa correctamente el archivo.
-     - `500 INTERNAL_SERVER_ERROR`: Si falla la subida o el procesamiento del archivo.
-
-4. **GET /download/{userID}**
-
-   Descarga el archivo CSV con los movimientos del portafolio del usuario especificado por el ID de usuario.
-
-   - Parámetros de ruta:
-     - `userID`: ID del usuario (Integer)
-
-   - Respuestas:
-     - `200 OK`: Si se descarga correctamente el archivo.
-     - `404 NOT_FOUND`: Si no se encuentra el archivo.
-     - `500 INTERNAL_SERVER_ERROR`: Si falla la descarga del archivo.
-
-5. **POST /movement/update**
-
+4. **POST /movement/update**
+   
    Actualiza un movimiento existente en el portafolio.
-
+   
    - Parámetros de cuerpo (JSON):
-     - `payload`: Objeto PortfolioMovement
-
+     - `payload`: Objeto PortfolioMovement con los datos actualizados
+   
    - Respuestas:
      - `200 OK`: Si se actualiza correctamente el movimiento.
      - `400 BAD_REQUEST`: Si ocurre un error al actualizar el movimiento.
      - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
 
-6. **GET /movement/{movementID}**
-
-   Obtiene un movimiento específico del portafolio.
+5. **GET /movement/{movementID}**
+   
+   Obtiene un movimiento específico del portafolio por su ID.
 
    - Parámetros de ruta:
      - `movementID`: ID del movimiento (Integer)
-
+   
    - Respuestas:
      - `200 OK`: Si se encuentra el movimiento.
      - `400 BAD_REQUEST`: Si ocurre un error al obtener el movimiento.
      - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
 
-7. **DELETE /movement/{movementID}**
-
-   Elimina un movimiento específico del portafolio.
-
-   - Parámetros de ruta:
-     - `movementID`: ID del movimiento (Integer)
-
+6. **POST /upload**
+   
+   Carga y procesa un archivo CSV con movimientos del portafolio.
+   
+   - Parámetros de formulario:
+     - `file`: Archivo CSV
+   
    - Respuestas:
-     - `200 OK`: Si se elimina correctamente el movimiento.
-     - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+     - `200 OK`: Si el archivo se carga y procesa con éxito.
+     - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error al cargar o procesar el archivo.
 
+7. **GET /download/{userID}**
 
-### SignedMessageController
-
-1. **POST /signedMessages**
-
-   Añade un mensaje firmado.
-
-   - Parámetros de cuerpo (JSON):
-     - `signedMessageDTO`: Objeto SignedMessageDTO
-
-   - Respuestas:
-     - `200 OK`: Si se añade correctamente el mensaje firmado.
-     - `400 BAD_REQUEST`: Si ocurre un error al añadir el mensaje firmado.
-     - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
-
-2. **GET /lastConversationId**
-
-   Obtiene el último ID de conversación.
-
-   - Respuestas:
-     - `200 OK`: Si se obtiene correctamente el último ID de conversación.
-
-3. **GET /signedMessages/{conversationId}**
-
-   Obtiene los mensajes firmados de una conversación específica.
-
-   - Parámetros de ruta:
-     - `conversationId`: ID de la conversación (Integer)
-
-   - Respuestas:
-     - `200 OK`: Si se obtienen correctamente los mensajes firmados.
-     - `400 BAD_REQUEST`: Si ocurre un error al obtener los mensajes firmados.
-     - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
-
-4. **GET /signedMessages/latest/{userId}**
-
-   Obtiene los últimos mensajes firmados del usuario especificado por el ID de usuario.
-
-   - Parámetros de ruta:
-     - `userId`: ID del usuario (Integer)
-
-   - Respuestas:
-     - `200 OK`: Si se obtienen correctamente los últimos mensajes firmados.
-     - `400 BAD_REQUEST`: Si ocurre un error al obtener los últimos mensajes firmados.
-     - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
-
-### SuscriptionPlanController
-
-1. **GET /suscriptionPlans/{suscriptionPlanID}**
-
-   Obtiene información del plan de suscripción especificado por el ID de suscripción.
-
-   - Parámetros de ruta:
-     - `suscriptionPlanID`: ID del plan de suscripción (Integer)
-
-   - Respuestas:
-     - `200 OK`: Si se obtiene correctamente la información del plan de suscripción.
-
-2. **GET /subscriptionPlans**
-
-   Obtiene todos los planes de suscripción.
-
-   - Respuestas:
-     - `200 OK`: Si se obtienen correctamente los planes de suscripción.
-
-### UnsignedMessageController
-
-1. **POST /contact**
-
-   Añade un mensaje de contacto.
-
-   - Parámetros de cuerpo (JSON):
-     - `message`: Mapa con información del mensaje de contacto
-
-   - Respuestas:
-     - `200 OK`: Si se añade correctamente el mensaje de contacto.
-     - `400 BAD_REQUEST`: Si ocurre un error al añadir el mensaje de contacto.
-     - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
-
-### UserController
-
-1. **GET /users/{userID}**
-
-   Obtiene información del usuario especificado por el ID de usuario.
+   Descarga en formato CSV los movimientos del portafolio del usuario.
 
    - Parámetros de ruta:
      - `userID`: ID del usuario (Integer)
 
    - Respuestas:
-     - `200 OK`: Si se obtiene correctamente la información del usuario.
+     - `200 OK`: Si el archivo se descarga con éxito.
+     - `404 NOT_FOUND`: Si no se encuentra el archivo.
+     - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error al descargar el archivo.
 
-2. **POST /users**
+8. **DELETE /movement/{movementID}**
 
-   Añade un nuevo usuario.
+   Elimina un movimiento específico del portafolio.
 
-   - Parámetros de cuerpo (JSON):
-     - `user`: Objeto User
-
+   - Parámetros de ruta:
+     - `movementID`: ID del movimiento (Integer)
+   
    - Respuestas:
-     - `200 OK`: Si se añade correctamente el usuario.
-     - `400 BAD_REQUEST`: Si ocurre un error al añadir el usuario.
-     - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+     - `200 OK`: Si el movimiento se
+
+._
+**POST /login**
+
+Autentica un usuario y devuelve sus datos.
+
+- Cuerpo de la solicitud (JSON):
+  - `message`: Objeto LoginRequest con `email` y `password`.
+
+- Respuestas:
+  - `200 OK`: Devuelve los datos del usuario si la autenticación es exitosa.
+  - `400 BAD_REQUEST`: Si ocurre un error en la autenticación.
+
+7. **GET /portfolio/{userID}**
+
+Obtiene el portafolio de un usuario específico.
+
+- Parámetros de ruta:
+  - `userID`: ID del usuario (Integer)
+
+- Respuestas:
+  - `200 OK`: Devuelve una lista de movimientos del portafolio del usuario.
+  - `400 BAD_REQUEST`: Si ocurre un error al obtener el portafolio.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+8. **POST /movement**
+
+Añade un nuevo movimiento al portafolio.
+
+- Cuerpo de la solicitud (JSON):
+  - `payload`: Objeto PortfolioMovement
+
+- Respuestas:
+  - `200 OK`: Devuelve el movimiento agregado si la operación es exitosa.
+  - `400 BAD_REQUEST`: Si ocurre un error al añadir el movimiento.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+9. **POST /movement/update**
+
+Actualiza un movimiento en el portafolio.
+
+- Cuerpo de la solicitud (JSON):
+  - `payload`: Objeto PortfolioMovement
+
+- Respuestas:
+  - `200 OK`: Devuelve el movimiento actualizado si la operación es exitosa.
+  - `400 BAD_REQUEST`: Si ocurre un error al actualizar el movimiento.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+10. **GET /movement/{movementID}**
+
+Obtiene un movimiento específico del portafolio.
+
+- Parámetros de ruta:
+  - `movementID`: ID del movimiento (Integer)
+
+- Respuestas:
+  - `200 OK`: Devuelve el movimiento si la operación es exitosa.
+  - `400 BAD_REQUEST`: Si ocurre un error al obtener el movimiento.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+11. **POST /upload**
+
+Sube un archivo CSV y añade los movimientos al portafolio.
+
+- Parámetros de formulario:
+  - `file`: Archivo CSV a subir.
+
+- Respuestas:
+  - `200 OK`: Si el archivo se sube y procesa correctamente.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+12. **GET /download/{userID}**
+
+Descarga los movimientos del portafolio de un usuario en un archivo CSV.
+
+- Parámetros de ruta:
+  - `userID`: ID del usuario (Integer)
+
+- Respuestas:
+  - `200 OK`: Si se descarga el archivo correctamente.
+  - `404 NOT_FOUND`: Si el archivo no se encuentra.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+13. **DELETE /movement/{movementID}**
+
+Elimina un movimiento específico del portafolio.
+
+- Parámetros de ruta:
+  - `movementID`: ID del movimiento (Integer)
+
+- Respuestas:
+  - `200 OK`: Si se elimina el movimiento correctamente.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+14. **POST /signedMessages**
+
+Añade un nuevo mensaje firmado.
+
+- Cuerpo de la solicitud (JSON):
+  - `signedMessageDTO`: Objeto SignedMessageDTO
+
+- Respuestas:
+  - `200 OK`: Devuelve el mensaje firmado agregado si la operación es exitosa.
+  - `400 BAD_REQUEST`: Si ocurre un error al añadir el mensaje.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+15. **GET /signedMessages/{messageID}**
+
+Obtiene un mensaje firmado específico.
+
+- Parámetros de ruta:
+  - `messageID`: ID del mensaje firmado (Integer)
+
+- Respuestas:
+  - `200 OK`: Devuelve el mensaje firmado si la operación es exitosa.
+  - `400 BAD_REQUEST`: Si ocurre un error al obtener el mensaje.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+16. **DELETE /signedMessages/{messageID}**
+
+Elimina un mensaje firmado específico.
+
+- Parámetros de ruta:
+  - `messageID`: ID del mensaje firmado (Integer)
+
+- Respuestas:
+  - `200 OK`: Si se elimina el mensaje firmado correctamente.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+17. **GET /signedMessages**
+
+Obtiene todos los mensajes firmados.
+
+- Respuestas:
+  - `200 OK`: Devuelve una lista de todos los mensajes firmados.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+18. **PUT /signedMessages/{messageID}**
+
+Actualiza un mensaje firmado específico.
+
+- Parámetros de ruta:
+  - `messageID`: ID del mensaje firmado (Integer)
+
+- Cuerpo de la solicitud (JSON):
+  - `signedMessageDTO`: Objeto SignedMessageDTO
+
+- Respuestas:
+  - `200 OK`: Devuelve el mensaje firmado actualizado si la operación es exitosa.
+  - `400 BAD_REQUEST`: Si ocurre un error al actualizar el mensaje.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+19. **GET /socials**
+
+Obtiene todos los planes de suscripción social.
+
+- Respuestas:
+  - `200 OK`: Devuelve una lista de todos los planes de suscripción social.
+
+20. **GET /socials/search**
+
+Busca usuarios por nombre.
+
+- Parámetros de consulta:
+  - `name`: Nombre del usuario (String)
+
+- Respuestas:
+  - `200 OK`: Devuelve una lista de usuarios que coinciden con el nombre proporcionado.
+
+21. **GET /suscriptionPlans/{suscriptionPlanID}**
+
+Obtiene la información de un plan de suscripción específico.
+
+- Parámetros de ruta:
+  - `suscriptionPlanID`: ID del plan de suscripción (Integer)
+
+- Respuestas:
+  - `200 OK`: Devuelve la información del plan de suscripción si la operación es exitosa.
+
+22. **GET /subscriptionPlans**
+
+Obtiene todos los planes de suscripción.
+
+- Respuestas:
+  - `200 OK`: Devuelve una lista de todos los planes de suscripción.
+
+23. **POST /contact**
+
+Añade un mensaje de contacto.
+
+- Cuerpo de la solicitud (JSON):
+  - `message`: Objeto que contiene el mensaje de contacto (Map<String, Object>)
+
+- Respuestas:
+  - `200 OK`: Si se añade correctamente el mensaje.
+  - `400 BAD_REQUEST`: Si ocurre un error al añadir el mensaje.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
+
+24. **GET /users/{userID}**
+
+Obtiene la información de un usuario específico.
+
+- Parámetros de ruta:
+  - `userID`: ID del usuario (Integer)
+
+- Respuestas:
+  - `200 OK`: Devuelve la información del usuario si la operación es exitosa.
+
+25. **POST /users/{userID}/update**
+
+Actualiza la información de un usuario específico.
+
+- Parámetros de ruta:
+  - `userID`: ID del usuario (Integer)
+
+- Cuerpo de la solicitud (JSON):
+  - `updatedUser`: Objeto User
+  - `subscriptionPlanId`: ID del plan de suscripción (Integer)
+
+- Respuestas:
+  - `200 OK`: Devuelve la información actualizada del usuario si la operación es exitosa.
+  - `400 BAD_REQUEST`: Si ocurre un error al actualizar el usuario.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado. 
+
+26. **POST /users**
+
+Añade un nuevo usuario.
+
+- Cuerpo de la solicitud (JSON):
+  - `user`: Objeto User
+  - `subscriptionPlanId`: ID del plan de suscripción (Integer)
+
+- Respuestas:
+  - `200 OK`: Devuelve la información del nuevo usuario si la operación es exitosa.
+  - `400 BAD_REQUEST`: Si ocurre un error al añadir el usuario.
+  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado. 
 
 
-## Tests unitarios:
+
+## Tests unitarios: TODO
 
 - SignedMessageControllerTest:
     - addSignedMessage_shouldReturnOk_whenValidMessage: Comprueba que se devuelve una respuesta con estado OK (200) cuando se añade un mensaje válido.

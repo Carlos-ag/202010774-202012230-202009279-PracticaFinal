@@ -1,5 +1,6 @@
 package com.stockify.stockifyapp.controller;
 
+import ch.qos.logback.classic.Level;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stockify.stockifyapp.model.SubscriptionPlan;
 import com.stockify.stockifyapp.model.User;
@@ -25,6 +26,10 @@ import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,6 +58,21 @@ class LoginControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+
+
+// ...
+
+    // Declare logger
+    private static final Logger logger = LoggerFactory.getLogger(LoginControllerTest.class);
+
+    // Set log level
+    static {
+        ch.qos.logback.classic.Logger rootLogger = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+        rootLogger.setLevel(Level.DEBUG);
+    }
+
+
 
 
     public void setUp() {

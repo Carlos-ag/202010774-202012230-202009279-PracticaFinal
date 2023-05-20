@@ -7,6 +7,16 @@
 Este es el repositorio se ha realizada en el cuadro de PROGRAMACIÓN DE APLICACIONES TELEMÁTICAS.
 Se ha realizado tanto el frontend como el backend de una aplicación completa para el seguimiento de acciones y mercados financieros y de una cartera. La aplicacion personaliza el conteido para cada usuario mostrandole la información de su cartera una vez que ha iniciado sesión.
 
+## Uso:
+Para usarlo hay que ejecutar el backend en el puerto 8080 (por defecto) para que funcione con el front. Como verá tengo el front y el backend en dos carpetas diferentes. Para ejecutar el backend hay que ponerse en la carpeta stockify-api. La web se puede acceder desde [aquí](https://carlos-ag.github.io/202010774-GITT-PAT-practica-5/Stockify/html/)
+
+## IMPORTANTE:
+Para ejecutar la API hace falta ponerse desde la carpeta stockify-api.
+El frontend y el backend están separados (Stockify y stockify-api respectivamente)
+
+- API Noticias (100 noticias por día)
+- API Acciones y autocompletado (5 por minuto) compartidas con la API de cotización de acciones
+
 ## Overview de la aplicación
 La aplicación cuenta con varias secciones:
 -1. Presentación: disponemos de una pagina web de presención que permite conocer al usuario de primera mano las funcionalidades de nuestra aplicación así como los planes de suscripción que tiene a su alcance.
@@ -27,19 +37,20 @@ La aplicación cuenta con varias secciones:
 
 ## Funcionalidades a destacar:
 La aplicación cuenta con avanzadas funcionalidades como:
-- autentificación (se verifica que un usuario no autentificado no pueda acceder a contenido restringido a usuarios que han iniciado sesión). Si intentan acceder sin iniciar sesión salta una alerta y se les redirecciona automaticamente a la página del login.
+- Autentificación (se verifica que un usuario no autentificado no pueda acceder a contenido restringido a usuarios que han iniciado sesión). Si intentan acceder sin iniciar sesión salta una alerta y se les redirecciona automaticamente a la página del login.
 - Cookies
-- views, 
-- queries complejas con joins de varias tablas, 
-- logs, 
-- tests, 
-- llamadas a APIs(tanto del backend como APIs externas), 
-- actualización solamente del contenido de la web que cambiante (no toda la web), uso de 
+- Views 
+- Cueries complejas con joins de varias tablas
+- logs 
+- Tests 
+- Llamadas a APIs(tanto del backend como APIs externas), 
+- Actualización solamente del contenido cambiantede la web (no toda la web), para optimizar la UX y la velocidad de carga de la web
 - SCSS
 - Bootstrap
 - Transaccionales (principalmente para asegurar que cuando se importa una cartera a través de un CSV se cargue entera la cartera)
 - Gestión de errores
 - Actuator para verificar que el backend está activo
+- UI/UX cuidada tanto en ordenadores como en móviles
 
 ## Bases de datos creadas:
 Para representar las bases de datos creadas hemos creado el diagrama que se puede ver a continuación:
@@ -649,34 +660,6 @@ Esta prueba verifica que cuando se produce un error inesperado al intentar agreg
 
 
 
-### MUY IMPORTANTE: USO:
-Para usarlo hay que ejecutar el backend en el puerto 8080 (por defecto) para que funcione con el front. Como verá tengo el front y el backend en dos carpetas diferentes. Para ejecutar el backend hay que ponerse en la carpeta stockify-api. La web se puede acceder desde [aquí](https://carlos-ag.github.io/202010774-GITT-PAT-practica-5/Stockify/html/)
-
-
-### IMPORTANTE:
-Para ejecutar la API hace falta ponerse desde la carpeta stockify-api.
-El frontend y el backend están separados (Stockify y stockify-api respectivamente)
-
-
-
-## IMPORTANTE:
-- API Noticias (100 noticias por día) (en principio *5 ya que he puesto 5 api keys diferentes)
-- API Autocompletado (5 por minuto) compartidas con la API de cotización de acciones
-
-
-### Introducción:
-Está página web está siendo realizada en el cuadro de PROGRAMACIÓN DE APLICACIONES TELEMÁTICAS. 
-
-La utilidad de la página es el de facilitar información al usuario sobre su cartera de acciones y permitirle en unos minutos tener un resumen de la evolución de esta en los últimos días/meses/años. 
-
-La página web funciona tanto en ordenadores como en dispositivos móviles y además es responsive, es decir, se adapta al tamaño de la pantalla del dispositivo en el que se visualiza. Verá que los colores del header también cambian para que quede bonita en cualquier dispositivo.
-
-Las técnologías usadas por el momento son HTML, CSS, Javascript, Python y Plotly, Java, Spring Boot, H2.
-
-Para familiarizarnos con los frameworks, hemos incluido Bootstrap en la página de login.
-
-También se ha usado SASS para facilitar el desarrollo de los archivos CSS. Para ello se ha usado la extensión de VSCode llamada Live Sass Compiler, que compila los archivos SASS a CSS en tiempo real. Se ha configurado esta extensión para que guarde los archivos en la carpeta CSS (y no en la carpeta SASS).
-
-### Instalación:
+## Instalación:
 Necesita un editor de texto como puede ser VSCode y un navegador para visualizar la página web.
 Si lo desea para facilitar el desarrollo de la página web puede la extensión de VSCode llamada Live Server que sirve para ver en directo los cambios realizados en el HTML sin necesidad de recargar la página web. También recomendamos el uso de Live Sass Compiler para facilitar el desarrollo de los archivos CSS ya que compila los archivos SASS a CSS en tiempo real.

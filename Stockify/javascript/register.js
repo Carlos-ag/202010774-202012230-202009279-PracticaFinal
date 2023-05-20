@@ -113,7 +113,7 @@ fetch('http://localhost:8080/subscriptionPlans')
                 document.cookie = `userID=${userID}; path=/`;
                 window.name = response.name;
                 if (window.name != "") {
-                    window.location.href = "index.html";
+                    window.location.href = "/html/";
                 }
                 // Redirect to the home page
                 //window.location.href = '/html/';

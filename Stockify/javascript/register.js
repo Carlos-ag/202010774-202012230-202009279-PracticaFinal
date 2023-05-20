@@ -44,11 +44,16 @@ fetch('http://localhost:8080/subscriptionPlans')
     .then(data => {
         if (data.length > 0) {
             subscriptionSelect.required = true;
-            data.forEach((item) => {
+            data.forEach((item, index) => {
                 let option = document.createElement('option');
                 option.value = item.id;
                 option.text = item.name + ' ($' + item.price + ')';
                 subscriptionSelect.appendChild(option);
+                
+                
+                if(item.name === localStorage.getItem('selectedPlan')) {
+                    subscriptionSelect.selectedIndex = index;
+                }
             });
         } else {
             subscriptionSelect.required = false;
@@ -56,8 +61,8 @@ fetch('http://localhost:8080/subscriptionPlans')
     })
     .catch(error => {
         subscriptionSelect.required = false;
-        // alert('Hubo un problema con la solicitud: ' + error.message);
     });
+
 
     function sendLoginRequest() {
         var myHeaders = new Headers();

@@ -1,7 +1,7 @@
 -- Insertar planes de suscripción en la tabla SUBSCRIPTION_PLANS
 INSERT INTO SUBSCRIPTION_PLANS (NAME, PRICE) VALUES
 ('Basic', 5),
-('Plus', 20),
+('Plus+', 20),
 ('Executive', 99);
 
 -- Insertar datos iniciales en la tabla USERS

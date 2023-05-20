@@ -1,7 +1,7 @@
 package com.stockify.stockifyapp.controller;
 
 import com.stockify.stockifyapp.model.SubscriptionPlan;
-import com.stockify.stockifyapp.service.SuscriptionPlanService;
+import com.stockify.stockifyapp.service.SubscriptionPlanService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,13 +22,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(SubscriptionPlanController.class)
-public class SuscriptionPlanControllerTest {
+public class SubscriptionPlanControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private SuscriptionPlanService suscriptionPlanService;
+    private SubscriptionPlanService subscriptionPlanService;
 
     private SubscriptionPlan plan1;
     private SubscriptionPlan plan2;
@@ -43,8 +43,8 @@ public class SuscriptionPlanControllerTest {
     }
 
     @Test
-    public void getSuscriptionPlanInfo_shouldReturnSuscriptionPlanInfo() throws Exception {
-        given(suscriptionPlanService.getSuscriptionPlanInfo(1)).willReturn(plan1);
+    public void getSubscriptionPlanInfo_shouldReturnSuscriptionPlanInfo() throws Exception {
+        given(subscriptionPlanService.getSuscriptionPlanInfo(1)).willReturn(plan1);
 
         mockMvc.perform(get("/suscriptionPlans/{suscriptionPlanID}", 1))
                 .andExpect(status().isOk())
@@ -54,9 +54,9 @@ public class SuscriptionPlanControllerTest {
     }
 
     @Test
-    public void getAllSuscriptionPlans_shouldReturnAllSuscriptionPlans() throws Exception {
+    public void getAllSubscriptionPlans_shouldReturnAllSuscriptionPlans() throws Exception {
         List<SubscriptionPlan> plans = Arrays.asList(plan1, plan2);
-        given(suscriptionPlanService.getAllSuscriptionPlans()).willReturn(plans);
+        given(subscriptionPlanService.getAllSuscriptionPlans()).willReturn(plans);
 
         mockMvc.perform(get("/subscriptionPlans"))
                 .andExpect(status().isOk())
@@ -69,16 +69,16 @@ public class SuscriptionPlanControllerTest {
     }
 
     @Test
-    public void getSuscriptionPlanInfo_shouldReturnBadRequest_whenInvalidId() throws Exception {
-        given(suscriptionPlanService.getSuscriptionPlanInfo(anyInt())).willThrow(new IllegalArgumentException("Invalid subscription plan ID"));
+    public void getSubscriptionPlanInfo_shouldReturnBadRequest_whenInvalidId() throws Exception {
+        given(subscriptionPlanService.getSuscriptionPlanInfo(anyInt())).willThrow(new IllegalArgumentException("Invalid subscription plan ID"));
 
         mockMvc.perform(get("/suscriptionPlans/{suscriptionPlanID}", -1))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
-    public void getSuscriptionPlanInfo_shouldReturnInternalServerError_whenUnexpectedError() throws Exception {
-        given(suscriptionPlanService.getSuscriptionPlanInfo(anyInt())).willThrow(new RuntimeException("Unexpected error"));
+    public void getSubscriptionPlanInfo_shouldReturnInternalServerError_whenUnexpectedError() throws Exception {
+        given(subscriptionPlanService.getSuscriptionPlanInfo(anyInt())).willThrow(new RuntimeException("Unexpected error"));
 
         mockMvc.perform(get("/suscriptionPlans/{suscriptionPlanID}", 1))
                 .andExpect(status().isInternalServerError());

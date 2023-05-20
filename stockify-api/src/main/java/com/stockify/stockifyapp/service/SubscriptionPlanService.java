@@ -7,7 +7,7 @@ import com.stockify.stockifyapp.model.SubscriptionPlan;
 import com.stockify.stockifyapp.repository.SuscriptionPlanRepository;
 
 @Service
-public class SuscriptionPlanService {
+public class SubscriptionPlanService {
 
     @Autowired
     private SuscriptionPlanRepository suscriptionPlanRepository;

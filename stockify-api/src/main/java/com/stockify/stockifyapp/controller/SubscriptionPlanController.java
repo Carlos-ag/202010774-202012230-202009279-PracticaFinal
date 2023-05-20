@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 
 import com.stockify.stockifyapp.model.SubscriptionPlan;
-import com.stockify.stockifyapp.service.SuscriptionPlanService;
+import com.stockify.stockifyapp.service.SubscriptionPlanService;
 
 @RestController
 public class SubscriptionPlanController {
 
-    private SuscriptionPlanService suscriptionPlanService;
+    private SubscriptionPlanService suscriptionPlanService;
 
-    public SubscriptionPlanController(SuscriptionPlanService suscriptionPlanService) {
+    public SubscriptionPlanController(SubscriptionPlanService suscriptionPlanService) {
         this.suscriptionPlanService = suscriptionPlanService;
     }
 

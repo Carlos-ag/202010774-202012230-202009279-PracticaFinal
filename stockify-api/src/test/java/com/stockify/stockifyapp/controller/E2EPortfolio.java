@@ -132,21 +132,6 @@ public void getMovement() {
     Assertions.assertEquals(1, responseBody.getUserId());
 }
 
-// @DeleteMapping("/movement/{movementID}")
-// @CrossOrigin(origins = "*")
-// public ResponseEntity<Void> deleteMovement(@PathVariable("movementID") Integer movementID) {
-//     try {
-//         portfolioService.deletePortfolioMovement(movementID);
-//         logger.info("Deleted movement: " + movementID);
-//         return ResponseEntity.ok().build();
-//     } catch (Exception e) {
-//         logger.error("Error deleting movement: " + e.getMessage());
-//         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//     }
-// }
-
-// }
-
 @Test
 @DisplayName("DELETE /portfolio/movement/{movementID} debe eliminar un movimiento del portfolio")
 public void deleteMovement() {

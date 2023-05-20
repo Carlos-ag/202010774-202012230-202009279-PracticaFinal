@@ -41,7 +41,7 @@ La aplicación cuenta con avanzadas funcionalidades como:
 - Gestión de errores
 - Actuator para verificar que el backend está activo
 
-## Bases de datos creadas: TODO cambiar imagen y texto
+## Bases de datos creadas:
 Para representar las bases de datos creadas hemos creado el diagrama que se puede ver a continuación:
  ![Diagrama SQL](assets/diagrama_sql.png)
 
@@ -108,7 +108,7 @@ Para representar las bases de datos creadas hemos creado el diagrama que se pued
 IO_MOVEMENTS | Cantidad de movimientos del portafolio asociados al usuario. |
  
 
-## Endpoints de la API: TODO: releer
+## Endpoints de la API: TODO releer
 
 A continuación se presenta la documentación de los endpoints de las APIs proporcionadas:
 
@@ -420,39 +420,232 @@ Añade un nuevo usuario.
 
 
 
-## Tests unitarios: TODO
+## Tests TODO: releer
 
-- SignedMessageControllerTest:
-    - addSignedMessage_shouldReturnOk_whenValidMessage: Comprueba que se devuelve una respuesta con estado OK (200) cuando se añade un mensaje válido.
-    - addSignedMessage_shouldReturnBadRequest_whenInvalidMessage: Comprueba que se devuelve una respuesta con estado Bad Request (400) cuando se intenta añadir un mensaje inválido.
-    - addSignedMessage_shouldReturnInternalServerError_whenUnexpectedError: Comprueba que se devuelve una respuesta con estado Internal Server Error (500) cuando ocurre un error inesperado al añadir un mensaje.
-    - getLastConversationId_shouldReturnOk: Comprueba que se devuelve una respuesta con estado OK (200) y un entero cuando se pide el último ID de conversación.
-    - getSignedMessages_shouldReturnOk_whenValidConversationId: Comprueba que se devuelve una respuesta con estado OK (200) y una lista de mensajes cuando se pide una lista de mensajes para una ID de conversación válida.
-    - getLatestMessagesByUserId_shouldReturnOk_whenValidUserId: Comprueba que se devuelve una respuesta con estado OK (200) y una lista de los últimos mensajes para un ID de usuario válido.
-    - getSignedMessages_shouldReturnBadRequest_whenInvalidConversationId: Comprueba que se devuelve una respuesta con estado Bad Request (400) cuando se intenta obtener una lista de mensajes con un ID de conversación inválido.
-    - getSignedMessages_shouldReturnInternalServerError_whenUnexpectedError: Comprueba que se devuelve una respuesta con estado Internal Server Error (500) cuando ocurre un error inesperado al obtener una lista de mensajes.
-    - addSignedMessage_shouldReturnBadRequest_whenRequiredFieldMissing: Comprueba que se devuelve una respuesta con estado Bad Request (400) cuando falta un campo requerido en el mensaje.
 
-- SuscriptionPlanControllerTest:
-    - getSuscriptionPlanInfo_shouldReturnSuscriptionPlanInfo: Comprueba que se devuelve una respuesta con estado OK (200) y los detalles del plan de suscripción correspondiente a un ID de plan válido.
-    - getAllSuscriptionPlans_shouldReturnAllSuscriptionPlans: Comprueba que se devuelve una respuesta con estado OK (200) y una lista con todos los planes de suscripción disponibles.
-    - getSuscriptionPlanInfo_shouldReturnBadRequest_whenInvalidId: Comprueba que se devuelve una respuesta con estado Bad Request (400) cuando se intenta obtener información de un plan de suscripción con un ID inválido.
-    - getSuscriptionPlanInfo_shouldReturnInternalServerError_whenUnexpectedError: Comprueba que se devuelve una respuesta con estado Internal Server Error (500) cuando ocurre un error inesperado al obtener información de un plan de suscripción.
+### Clase `E2EPortfolio`
 
-- UnsignedMessageControllerTest:
-    - addContactMessage_shouldAddMessage: Comprueba que se devuelve una respuesta con estado OK (200) cuando se añade un mensaje de contacto.
-    - addContactMessage_shouldReturnBadRequest_whenInvalidPayload: Comprueba que se devuelve una respuesta con estado Bad Request (400) cuando se intenta añadir un mensaje de contacto con datos inválidos.
-    - addContactMessage_shouldReturnInternalServerError_whenUnexpectedError: Comprueba que se devuelve una respuesta con estado Internal Server Error (500) cuando ocurre un error inesperado al añadir un mensaje de contacto.
+Esta clase contiene pruebas de extremo a extremo para las funcionalidades del controlador `Portfolio`.
 
-- UserControllerTest:
-    - getUserInfo_shouldReturnUserInfo(): se prueba que se pueda obtener la información de un usuario existente a través de su ID. Se espera que el endpoint retorne un código de estado HTTP 200 y la información del usuario en formato JSON.
+#### Test `getPortfolio()`
 
-    - addUser_shouldAddUser(): se prueba que se pueda agregar un nuevo usuario a través del endpoint correspondiente. Se espera que el endpoint retorne un código de estado HTTP 200 y la información del usuario agregado en formato JSON.
+El test `getPortfolio()` verifica la funcionalidad de `GET /portfolio/userID`. Se espera que este endpoint retorne la lista de todos los movimientos de un usuario.
 
-    - addUser_shouldReturnBadRequest_whenInvalidData(): se prueba que el endpoint de agregar usuario retorne un código de estado HTTP 400 cuando se proporciona información inválida para el nuevo usuario.
+En este test se hacen las siguientes comprobaciones:
+- El código de estado de la respuesta debe ser 200 (OK).
+- El tipo de contenido de la respuesta debe ser JSON.
+- Los datos de la respuesta deben coincidir con las expectativas, basándose en los movimientos de la cartera precargados para el usuario.
 
-    - addUser_shouldReturnInternalServerError_whenUnexpectedError(): se prueba que el endpoint de agregar usuario retorne un código de estado HTTP 500 cuando se produce un error inesperado al intentar agregar el nuevo usuario.
+#### Test `addMovement()`
 
+El test `addMovement()` verifica la funcionalidad de `POST /portfolio/movement`. Se espera que este endpoint agregue un movimiento al portfolio del usuario.
+
+En este test se hacen las siguientes comprobaciones:
+- El código de estado de la respuesta debe ser 200 (OK).
+- El tipo de contenido de la respuesta debe ser JSON.
+- Los datos de la respuesta deben coincidir con el movimiento de la cartera que se intentó agregar.
+
+#### Test `updateMovement()`
+
+El test `updateMovement()` verifica la funcionalidad de `POST /portfolio/movement/update`. Se espera que este endpoint actualice un movimiento en el portfolio del usuario.
+
+En este test se hacen las siguientes comprobaciones:
+- El código de estado de la respuesta debe ser 200 (OK).
+- El tipo de contenido de la respuesta debe ser JSON.
+- Los datos de la respuesta deben coincidir con el movimiento de la cartera que se intentó actualizar.
+
+#### Test `getMovement()`
+
+El test `getMovement()` verifica la funcionalidad de `GET /portfolio/movement/{movementID}`. Se espera que este endpoint retorne un movimiento específico del portfolio del usuario.
+
+En este test se hacen las siguientes comprobaciones:
+- El código de estado de la respuesta debe ser 200 (OK).
+- El tipo de contenido de la respuesta debe ser JSON.
+- Los datos de la respuesta deben coincidir con el movimiento de la cartera que se solicitó.
+
+#### Test `deleteMovement()`
+
+El test `deleteMovement()` verifica la funcionalidad de `DELETE /portfolio/movement/{movementID}`. Se espera que este endpoint elimine un movimiento específico del portfolio del usuario.
+
+En este test se hacen las siguientes comprobaciones:
+- El código de estado de la respuesta debe ser 200 (OK).
+- Después de la eliminación, al intentar obtener el movimiento de la cartera, se debería recibir un código de estado 200 (OK), lo que indica que el movimiento fue eliminado con éxito.
+
+
+### Clase `E2ESignedMessage`
+
+Esta clase contiene pruebas de extremo a extremo para la funcionalidad del controlador `SignedMessage`.
+
+#### Test `positive_getLastId()`
+
+El test `positive_getLastId()` verifica la funcionalidad del endpoint `GET /lastConversationId`. Se espera que este endpoint retorne el ID de la última conversación.
+
+En este test se hacen las siguientes comprobaciones:
+- El código de estado de la respuesta debe ser 200 (OK).
+- El cuerpo de la respuesta debe ser igual al ID de la última conversación que se espera.
+
+
+### Clase `E2ESocialController`
+
+Esta clase contiene pruebas de extremo a extremo para las funcionalidades del controlador `Social`.
+
+#### Test `getAllPositive()`
+
+El test `getAllPositive()` verifica la funcionalidad del endpoint `GET /socials`. Se espera que este endpoint retorne la lista de todos los usuarios sociales.
+
+En este test se hacen las siguientes comprobaciones:
+- El código de estado de la respuesta debe ser 200 (OK).
+- Los nombres de los usuarios en la respuesta deben coincidir con los nombres esperados.
+
+#### Test `getUsersByNameTest()`
+
+El test `getUsersByNameTest()` verifica la funcionalidad del endpoint `GET /socials/search?name={name}`. Se espera que este endpoint retorne una lista de usuarios que coincidan con el nombre proporcionado.
+
+En este test se hacen las siguientes comprobaciones:
+- El código de estado de la respuesta debe ser 200 (OK).
+- Los nombres de los usuarios en la respuesta deben coincidir con el nombre buscado.
+
+
+
+### Clase `E2ESubscription`
+
+Esta clase contiene pruebas de extremo a extremo para las funcionalidades del controlador `Subscription`.
+
+#### Test `positive_getSuscriptionPlanInfo()`
+
+El test `positive_getSuscriptionPlanInfo()` verifica la funcionalidad del endpoint `GET /subscriptionPlans/{id}`. Se espera que este endpoint retorne la información del plan de suscripción correspondiente al id proporcionado.
+
+En este test se hacen las siguientes comprobaciones:
+- El código de estado de la respuesta debe ser 200 (OK).
+- El nombre del plan de suscripción en la respuesta debe ser igual al nombre esperado.
+- El precio del plan de suscripción en la respuesta debe ser igual al precio esperado.
+
+#### Test `positive_getAllSuscriptionPlans()`
+
+El test `positive_getAllSuscriptionPlans()` verifica la funcionalidad del endpoint `GET /subscriptionPlans`. Se espera que este endpoint retorne la lista de todos los planes de suscripción disponibles.
+
+En este test se hacen las siguientes comprobaciones:
+- El código de estado de la respuesta debe ser 200 (OK).
+- La lista de planes de suscripción en la respuesta debe ser igual a la lista de planes de suscripción esperada.
+
+
+
+### Clase `LoginControllerTest`
+
+Esta clase contiene pruebas para la funcionalidad del controlador `LoginController`.
+
+#### Test `loginPositive()`
+
+El test `loginPositive()` verifica la funcionalidad del endpoint `POST /login` con datos correctos. Se espera que este endpoint retorne el estado 200 (OK) cuando se realiza un inicio de sesión válido.
+
+En este test se hacen las siguientes comprobaciones:
+- Se prepara una petición con un cuerpo que contiene un email y una contraseña válidos.
+- Se realiza la petición POST al endpoint /login.
+- Se espera que el código de estado de la respuesta sea 200 (OK).
+
+
+### Clase `SignedMessageControllerTest`
+
+Esta clase contiene pruebas para la funcionalidad del controlador `SignedMessageController`.
+
+#### Test `addSignedMessage_shouldReturnOk_whenValidMessage()`
+
+Este test verifica que cuando se agrega un mensaje firmado válido, el método retorna un estado 200 (OK).
+
+#### Test `addSignedMessage_shouldReturnBadRequest_whenInvalidMessage()`
+
+Este test verifica que cuando se agrega un mensaje firmado inválido, el método retorna un estado 400 (BadRequest).
+
+#### Test `addSignedMessage_shouldReturnInternalServerError_whenUnexpectedError()`
+
+Este test verifica que cuando se encuentra un error inesperado al agregar un mensaje firmado, el método retorna un estado 500 (InternalServerError).
+
+#### Test `getLastConversationId_shouldReturnOk()`
+
+Este test verifica que cuando se obtiene el último ID de conversación, el método retorna un estado 200 (OK).
+
+#### Test `getSignedMessages_shouldReturnOk_whenValidConversationId()`
+
+Este test verifica que cuando se obtienen mensajes firmados con un ID de conversación válido, el método retorna un estado 200 (OK).
+
+#### Test `getLatestMessagesByUserId_shouldReturnOk_whenValidUserId()`
+
+Este test verifica que cuando se obtienen los últimos mensajes por un ID de usuario válido, el método retorna un estado 200 (OK).
+
+#### Test `getSignedMessages_shouldReturnBadRequest_whenInvalidConversationId()`
+
+Este test verifica que cuando se obtienen mensajes firmados con un ID de conversación inválido, el método retorna un estado 400 (BadRequest).
+
+#### Test `getSignedMessages_shouldReturnInternalServerError_whenUnexpectedError()`
+
+Este test verifica que cuando se encuentra un error inesperado al obtener mensajes firmados, el método retorna un estado 500 (InternalServerError).
+
+#### Test `getLatestMessagesByUserId_shouldReturnBadRequest_whenInvalidUserId()`
+
+Este test verifica que cuando se obtienen los últimos mensajes por un ID de usuario inválido, el método retorna un estado 400 (BadRequest).
+
+#### Test `getLatestMessagesByUserId_shouldReturnInternalServerError_whenUnexpectedError()`
+
+Este test verifica que cuando se encuentra un error inesperado al obtener los últimos mensajes por ID de usuario, el método retorna un estado 500 (InternalServerError).
+
+
+### Clase `SubscriptionPlanControllerTest`
+
+Esta clase contiene pruebas para la funcionalidad del controlador `SubscriptionPlanController`.
+
+#### Test `getSuscriptionPlanInfo_shouldReturnSuscriptionPlanInfo()`
+
+Esta prueba verifica que cuando se solicita la información de un plan de suscripción válido, el método retorna un estado 200 (OK) junto con los detalles del plan de suscripción.
+
+#### Test `getAllSuscriptionPlans_shouldReturnAllSuscriptionPlans()`
+
+Esta prueba verifica que cuando se solicitan todos los planes de suscripción, el método retorna un estado 200 (OK) junto con una lista de todos los planes de suscripción.
+
+#### Test `getSuscriptionPlanInfo_shouldReturnBadRequest_whenInvalidId()`
+
+Esta prueba verifica que cuando se solicita la información de un plan de suscripción con un ID inválido, el método retorna un estado 400 (BadRequest).
+
+#### Test `getSuscriptionPlanInfo_shouldReturnInternalServerError_whenUnexpectedError()`
+
+Esta prueba verifica que cuando se encuentra un error inesperado al solicitar la información de un plan de suscripción, el método retorna un estado 500 (InternalServerError).
+
+
+### Clase `UnsignedMessageControllerTest`
+
+Esta clase contiene pruebas para la funcionalidad del controlador `UnsignedMessageController`.
+
+#### Test `addContactMessage_shouldAddMessage()`
+
+Esta prueba verifica que cuando se envía un mensaje de contacto válido, el método retorna un estado 200 (OK) y se agrega el mensaje correctamente.
+
+#### Test `addContactMessage_shouldReturnBadRequest_whenInvalidPayload()`
+
+Esta prueba verifica que cuando se envía un mensaje de contacto con una carga útil inválida (por ejemplo, un nombre nulo), el método retorna un estado 400 (BadRequest). En este caso, el servicio lanza una excepción `IllegalArgumentException`.
+
+#### Test `addContactMessage_shouldReturnInternalServerError_whenUnexpectedError()`
+
+Esta prueba verifica que cuando se produce un error inesperado al enviar un mensaje de contacto, el método retorna un estado 500 (InternalServerError). En este caso, el servicio lanza una excepción `RuntimeException`.
+
+
+### Clase `UserControllerTest`
+
+Esta clase contiene pruebas para la funcionalidad del controlador `UserController`.
+
+#### Test `getUserInfo_shouldReturnUserInfo()`
+
+Esta prueba verifica que cuando se solicita la información de un usuario existente, el método retorna un estado 200 (OK) y la información correcta del usuario.
+
+#### Test `addUser_shouldAddUser()`
+
+Esta prueba verifica que cuando se intenta agregar un usuario con una carga útil válida, el método retorna un estado 200 (OK) y el usuario se agrega correctamente.
+
+#### Test `addUser_shouldReturnBadRequest_whenInvalidData()`
+
+Esta prueba verifica que cuando se intenta agregar un usuario con una carga útil inválida (por ejemplo, un correo electrónico inválido), el método retorna un estado 400 (BadRequest). En este caso, el servicio lanza una excepción `IllegalArgumentException`.
+
+#### Test `addUser_shouldReturnInternalServerError_whenUnexpectedError()`
+
+Esta prueba verifica que cuando se produce un error inesperado al intentar agregar un usuario, el método retorna un estado 500 (InternalServerError). En este caso, el servicio lanza una excepción `RuntimeException`.
 
 
 

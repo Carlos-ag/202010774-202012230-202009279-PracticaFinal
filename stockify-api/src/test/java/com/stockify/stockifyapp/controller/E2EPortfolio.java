@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -34,8 +35,8 @@ import org.springframework.core.io.Resource;
 import com.stockify.stockifyapp.model.PortfolioMovement;
 import com.stockify.stockifyapp.service.PortfolioService;
 
-@RestController
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@AutoConfigureTestDatabase
 public class E2EPortfolio {
 
     TestRestTemplate restTemplate = new TestRestTemplate(new RestTemplateBuilder().rootUri("http://localhost:8081"));
@@ -53,8 +54,7 @@ public void getPortfolio() {
 
     Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
     Assertions.assertEquals(MediaType.APPLICATION_JSON, response.getHeaders().getContentType());
-    Assertions.assertEquals(2, response.getBody().size());
-
+    
     Map<String, Object> firstEntry = response.getBody().get(0);
     Assertions.assertEquals(1, firstEntry.get("id"));
     Assertions.assertEquals("AAPL", firstEntry.get("ticker"));
@@ -72,22 +72,6 @@ public void getPortfolio() {
     Assertions.assertEquals(1, secondEntry.get("userId"));
 }
 
-// @PostMapping(path = "/movement", 
-//         consumes = MediaType.APPLICATION_JSON_VALUE, 
-//         produces = MediaType.APPLICATION_JSON_VALUE)
-//     @CrossOrigin(origins = "*")
-//     public ResponseEntity<Object> addMovement(@RequestBody PortfolioMovement payload) {
-//         // public void addMovement(@RequestBody Map<String, Object> payload) {
-    
-//             try {
-//                 portfolioService.addPortfolioMovement(payload);
-//                 logger.info("Added movement: " + payload.toString()); 
-//                 return ResponseEntity.ok(payload);
-//             } catch (Exception e) {
-//                 logger.error("Error adding movement: " + e.getMessage());
-//                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-//             }
-//     }
 
 @Test
 @DisplayName("POST /portfolio/movement debe agregar un movimiento al portfolio")

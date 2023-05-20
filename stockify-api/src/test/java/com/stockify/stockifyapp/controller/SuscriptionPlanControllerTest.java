@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(SuscriptionPlanController.class)
+@WebMvcTest(SubscriptionPlanController.class)
 public class SuscriptionPlanControllerTest {
 
     @Autowired

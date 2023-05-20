@@ -12,11 +12,11 @@ import com.stockify.stockifyapp.model.SubscriptionPlan;
 import com.stockify.stockifyapp.service.SuscriptionPlanService;
 
 @RestController
-public class SuscriptionPlanController {
+public class SubscriptionPlanController {
 
     private SuscriptionPlanService suscriptionPlanService;
 
-    public SuscriptionPlanController(SuscriptionPlanService suscriptionPlanService) {
+    public SubscriptionPlanController(SuscriptionPlanService suscriptionPlanService) {
         this.suscriptionPlanService = suscriptionPlanService;
     }
 

@@ -43,7 +43,7 @@ document.getElementById("login").addEventListener('click',async function(event){
             document.cookie = `userID=${userID}; path=/`;
             window.name = response.name;
             // Redirect to the home page
-            window.location.href = '/html/';
+            window.location.href = "index.html";
         } else {
             throw new Error('Response is not an object or is empty');
         }

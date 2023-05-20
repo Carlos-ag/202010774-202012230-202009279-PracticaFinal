@@ -205,30 +205,6 @@ A continuación se presenta la documentación de los endpoints de las APIs propo
    - Respuestas:
      - `200 OK`: Si el movimiento se
 
-._
-**POST /login**
-
-Autentica un usuario y devuelve sus datos.
-
-- Cuerpo de la solicitud (JSON):
-  - `message`: Objeto LoginRequest con `email` y `password`.
-
-- Respuestas:
-  - `200 OK`: Devuelve los datos del usuario si la autenticación es exitosa.
-  - `400 BAD_REQUEST`: Si ocurre un error en la autenticación.
-
-7. **GET /portfolio/{userID}**
-
-Obtiene el portafolio de un usuario específico.
-
-- Parámetros de ruta:
-  - `userID`: ID del usuario (Integer)
-
-- Respuestas:
-  - `200 OK`: Devuelve una lista de movimientos del portafolio del usuario.
-  - `400 BAD_REQUEST`: Si ocurre un error al obtener el portafolio.
-  - `500 INTERNAL_SERVER_ERROR`: Si ocurre un error inesperado.
-
 8. **POST /movement**
 
 Añade un nuevo movimiento al portafolio.

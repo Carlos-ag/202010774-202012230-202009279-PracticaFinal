@@ -58,7 +58,7 @@ public class UserController {
     public ResponseEntity<User> addUser(@RequestBody User user, @RequestParam("subscriptionPlanId") Integer subscriptionPlanId) {
         try {
             PasswordEncrypter pwe = new PasswordEncrypter();
-            user.setPassword(pwe.encrypt(user.getPassword()));
+            //user.setPassword(pwe.encrypt(user.getPassword()));
             User newUser = userService.addUser(user, subscriptionPlanId);
             logger.info("Added user: " + newUser.toString());
             return ResponseEntity.ok(newUser);

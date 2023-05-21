@@ -42,8 +42,8 @@ document.getElementById("login").addEventListener('click',async function(event){
             window.name = response.name;
 
             // Define base URL for redirection based on hostname
-            let baseURL = (window.location.hostname.includes('github')) ? './home' : '/html/';
-            console.log("version 1");
+            let baseURL = (window.location.hostname.includes('github')) ? '/202010774-202012230-202009279-PracticaFinal/Stockify/html/home' : '/html/home';
+
             // Redirect to the home page
             window.location.href = baseURL;
         } else {

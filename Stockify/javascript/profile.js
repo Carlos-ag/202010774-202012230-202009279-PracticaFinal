@@ -171,7 +171,7 @@ async function displayChat(conversationId) {
         // Populate the chat content
         $('#chat-content').empty();
         chatData.forEach(message => {
-            const messageDiv = $('<div></div>').addClass(`message ${message.user.id !== getUserIdFromCookie() ? 'user' : 'support'}`);
+            const messageDiv = $('<div></div>').addClass(`message ${message.user.id == getUserIdFromCookie() ? 'user' : 'support'}`);
             const messageText = $('<div></div>').addClass('message-text').text(message.message);
             messageDiv.append(messageText);
             $('#chat-content').append(messageDiv);
@@ -186,6 +186,8 @@ async function displayChat(conversationId) {
     $('#chat').show();
     $('#message-input').show(); // Show the message input
 }
+
+
 
 
 function goBackToMessagesList() {
@@ -224,11 +226,12 @@ async function startNewMessage() {
 }
 
 function addMessageToChat(messageText, isUser) {
-    const messageDiv = $('<div></div>').addClass(`message ${isUser ? 'user' : 'support'}`);
+    const messageDiv = $('<div></div>').addClass(`message ${!isUser ? 'user' : 'support'}`);
     const messageTextElement = $('<div></div>').addClass('message-text').text(messageText);
     messageDiv.append(messageTextElement);
     $('#chat-content').append(messageDiv);
 }
+
 
 
 async function sendMessage() {
@@ -273,6 +276,7 @@ async function sendMessage() {
         $('#message-input input').val('');
     }
 }
+
 
 
 

@@ -113,7 +113,11 @@ fetch('http://localhost:8080/subscriptionPlans')
                 document.cookie = `userID=${userID}; path=/`;
                 window.name = response.name;
                 if (window.name != "") {
-                    window.location.href = "/html/";
+                     // Define base URL for redirection based on hostname
+            let baseURL = (window.location.hostname.includes('github')) ? './home' : '/html/';
+            
+            // Redirect to the home page
+            window.location.href = baseURL;
                 }
                 // Redirect to the home page
                 //window.location.href = '/html/';

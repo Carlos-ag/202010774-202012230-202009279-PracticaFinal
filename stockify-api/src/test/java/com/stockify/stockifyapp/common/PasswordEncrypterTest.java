@@ -13,7 +13,7 @@ public class PasswordEncrypterTest{
 
     @Test
     public void testEncrypt() throws Exception {
-        pwd = "TestString";
+        pwd = "password";
         pe = new PasswordEncrypter();
         enPwd = pe.encrypt(pwd);
         assertNotEquals(pwd,enPwd);

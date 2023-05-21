@@ -1,5 +1,6 @@
 package com.stockify.stockifyapp.controller;
 
+import com.stockify.stockifyapp.common.PasswordEncrypter;
 import com.stockify.stockifyapp.model.User;
 import com.stockify.stockifyapp.service.LoginService;
 import com.stockify.stockifyapp.service.UserService;
@@ -20,12 +21,15 @@ public class LoginController {
         this.loginService = loginService;
     }
 
+
     @PostMapping(path="/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*")
-    public ResponseEntity<User> searchUser(@RequestBody LoginRequest message, BindingResult bindingResult) {
+    public ResponseEntity<User> searchUser(@RequestBody LoginRequest message, BindingResult bindingResult) throws Exception {
+        PasswordEncrypter pwe = new PasswordEncrypter();
+        System.out.println(pwe.encrypt(message.getPassword()));
         if (bindingResult.hasErrors())
             return ResponseEntity.badRequest().build();
-        return ResponseEntity.ok(loginService.findUser(message.getPassword(), message.getEmail()));
+        return ResponseEntity.ok(loginService.findUser(pwe.encrypt(message.getPassword()), message.getEmail()));
     }
 
 

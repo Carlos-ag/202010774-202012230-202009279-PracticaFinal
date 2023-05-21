@@ -8,6 +8,7 @@ document.getElementById("login").addEventListener('click',async function(event){
     const password = document.getElementById('password').value;
 
     console.log("Email: "+ email+ " Password: " + password);
+    console.log("version 1");
 
     // Make an API request to authenticate the user
     await fetch("http://localhost:8080/login", {

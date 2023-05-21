@@ -40,7 +40,7 @@ La aplicación cuenta con avanzadas funcionalidades como:
 - Autentificación (se verifica que un usuario no autentificado no pueda acceder a contenido restringido a usuarios que han iniciado sesión). Si intentan acceder sin iniciar sesión salta una alerta y se les redirecciona automaticamente a la página del login.
 - Cookies
 - Views 
-- Cueries complejas con joins de varias tablas
+- Queries complejas con joins de varias tablas
 - logs 
 - Tests 
 - Llamadas a APIs(tanto del backend como APIs externas), 
@@ -67,13 +67,13 @@ Para representar las bases de datos creadas hemos creado el diagrama que se pued
 
 ### Tabla: USERS
 
-| Columna | Tipo de Datos | Descripción |
-| --- | --- | --- |
-| ID | INT, NOT NULL, AUTO_INCREMENT | Identificador único de cada usuario. |
-| NAME | VARCHAR(255), NOT NULL | Nombre del usuario. |
-| EMAIL | VARCHAR(255), NOT NULL | Correo electrónico del usuario. |
-| PHONE | VARCHAR(255), NOT NULL | Teléfono del usuario. |
-| PASSWORD | VARCHAR(255), NOT NULL | Contraseña del usuario. |
+| Columna | Tipo de Datos | Descripción                                                                                                                             |
+| --- | --- |-----------------------------------------------------------------------------------------------------------------------------------------|
+| ID | INT, NOT NULL, AUTO_INCREMENT | Identificador único de cada usuario.                                                                                                    |
+| NAME | VARCHAR(255), NOT NULL | Nombre del usuario.                                                                                                                     |
+| EMAIL | VARCHAR(255), NOT NULL | Correo electrónico del usuario.                                                                                                         |
+| PHONE | VARCHAR(255), NOT NULL | Teléfono del usuario.                                                                                                                   |
+| PASSWORD | VARCHAR(255), NOT NULL | Contraseña del usuario encriptada.                                                                                                      |
 | SUBSCRIPTION_PLAN | INT, NOT NULL | Identificador del plan de suscripción al que está suscrito el usuario. Clave foránea que hace referencia a la tabla SUBSCRIPTION_PLANS. |
 
 ### Tabla: SIGNED_MESSAGES
@@ -431,7 +431,7 @@ Añade un nuevo usuario.
 
 
 
-## Tests TODO: releer
+## Tests 
 
 
 ### Clase `E2EPortfolio`

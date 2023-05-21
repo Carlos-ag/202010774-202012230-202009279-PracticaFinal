@@ -114,7 +114,7 @@ fetch('http://localhost:8080/subscriptionPlans')
                 window.name = response.name;
                 if (window.name != "") {
                      // Define base URL for redirection based on hostname
-            let baseURL = (window.location.hostname.includes('github')) ? '/home' : '/html/';
+            let baseURL = (window.location.hostname.includes('github')) ? './home' : '/html/';
             
             // Redirect to the home page
             window.location.href = baseURL;

@@ -42,7 +42,7 @@ document.getElementById("login").addEventListener('click',async function(event){
             window.name = response.name;
 
             // Define base URL for redirection based on hostname
-            let baseURL = (window.location.hostname.includes('github')) ? '/202010774-202012230-202009279-PracticaFinal/Stockify/html/' : '/html/';
+            let baseURL = (window.location.hostname.includes('github')) ? '/202010774-202012230-202009279-PracticaFinal/Stockify/html/index.html' : '/html/';
 
             // Redirect to the home page
             window.location.href = baseURL;

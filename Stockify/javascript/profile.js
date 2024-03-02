@@ -25,7 +25,7 @@ async function init() {
     $('#send-message').on('click', sendMessage);
 }
 
-
+password = '';
 
 var currentConversationId = null;
 
@@ -66,6 +66,7 @@ async function fetchUserData() {
         $('#phone').val(userData.phone);
         $('#email').val(userData.email);
         $('#subscription').val(userData.subscriptionPlan.id);
+        password = userData.password;
 
         await subscriptionPlansPromise; // Wait for the subscription plans to be fetched
 
@@ -131,6 +132,7 @@ function toggleEditSave() {
                 name: $('#name').val(),
                 phone: $('#phone').val(),
                 email: $('#email').val(),
+                password: password,
                 subscriptionPlanId: $('#subscription').val()
             };
             updateUser(updatedUserData);

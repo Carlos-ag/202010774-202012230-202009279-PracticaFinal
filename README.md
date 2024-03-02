@@ -8,7 +8,7 @@ Este es el repositorio se ha realizada en el cuadro de PROGRAMACIÓN DE APLICACI
 Se ha realizado tanto el frontend como el backend de una aplicación completa para el seguimiento de acciones y mercados financieros y de una cartera. La aplicacion personaliza el conteido para cada usuario mostrandole la información de su cartera una vez que ha iniciado sesión.
 
 ## Uso:
-Para usarlo hay que ejecutar el backend en el puerto 8080 (por defecto) para que funcione con el front. Como verá el front y el backend se encuetran en dos carpetas diferentes. Para ejecutar el backend hay que ponerse en la carpeta stockify-api. La web se puede acceder desde [aquí](https://carlos-ag.github.io/202010774-202012230-202009279-PracticaFinal/Stockify/html/presentation.html).
+Para usarlo hay que ejecutar el backend en el puerto 8080 (por defecto) para que funcione con el front. Como verá el front y el backend se encuetran en dos carpetas diferentes. Para ejecutar el backend hay que ponerse en la carpeta stockify-api. Para ejecutar el front, hay que ponerse en la carpeta Stockify (que está al mismo nivel que la carpeta stockify-api). Por alguna razón no hemos conseguido que se ejecute correctamente la web en Github Pages, porque el direccionamiento de esta hace cosas raras.
 
 Se han creado usuarios de prueba para poder comprobar el funcionamiento de la página. Se recomienda acceder usando el usuario con el siguiente correo alice@example.com y contraseña "password".
 
